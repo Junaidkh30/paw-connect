@@ -99,9 +99,7 @@ function PetDetailPage() {
     }
   };
 
-  const similarPets = pets
-    .filter((p) => p.id !== pet.id && p.species === pet.species)
-    .slice(0, 3);
+  const similarPets = pets.filter((p) => p.id !== pet.id && p.species === pet.species).slice(0, 3);
 
   return (
     <main className="page-enter min-h-screen pb-20">
@@ -146,19 +144,12 @@ function PetDetailPage() {
                 variant="glass"
                 size="icon"
                 aria-label={
-                  saved
-                    ? `Remove ${pet.name} from favorites`
-                    : `Save ${pet.name} to favorites`
+                  saved ? `Remove ${pet.name} from favorites` : `Save ${pet.name} to favorites`
                 }
                 onClick={() => toggleFavorite(pet.id, pet.name)}
                 className="absolute right-4 top-4 rounded-full shadow-md"
               >
-                <Heart
-                  className={cn(
-                    "size-5",
-                    saved && "fill-current text-primary",
-                  )}
-                />
+                <Heart className={cn("size-5", saved && "fill-current text-primary")} />
               </Button>
             </div>
 
@@ -174,12 +165,7 @@ function PetDetailPage() {
                   </h1>
                 </div>
                 <div className="flex items-center gap-2">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="gap-2"
-                    onClick={handleShare}
-                  >
+                  <Button variant="outline" size="sm" className="gap-2" onClick={handleShare}>
                     <Share2 className="size-4" /> Share
                   </Button>
                   <Button
@@ -188,9 +174,7 @@ function PetDetailPage() {
                     className="gap-2"
                     onClick={() => toggleFavorite(pet.id, pet.name)}
                   >
-                    <Heart
-                      className={cn("size-4", saved && "fill-current")}
-                    />
+                    <Heart className={cn("size-4", saved && "fill-current")} />
                     {saved ? "Saved" : "Save"}
                   </Button>
                 </div>
@@ -199,33 +183,23 @@ function PetDetailPage() {
               {/* Quick Stat Badges */}
               <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-4">
                 <div className="rounded-2xl border bg-card p-4 shadow-soft">
-                  <p className="text-xs font-bold uppercase text-muted-foreground">
-                    Age
-                  </p>
+                  <p className="text-xs font-bold uppercase text-muted-foreground">Age</p>
                   <p className="mt-1 font-display text-lg font-bold text-foreground">
                     {pet.age} ({pet.ageCategory})
                   </p>
                 </div>
                 <div className="rounded-2xl border bg-card p-4 shadow-soft">
-                  <p className="text-xs font-bold uppercase text-muted-foreground">
-                    Gender
-                  </p>
+                  <p className="text-xs font-bold uppercase text-muted-foreground">Gender</p>
                   <p className="mt-1 font-display text-lg font-bold text-foreground">
                     {pet.gender}
                   </p>
                 </div>
                 <div className="rounded-2xl border bg-card p-4 shadow-soft">
-                  <p className="text-xs font-bold uppercase text-muted-foreground">
-                    Size
-                  </p>
-                  <p className="mt-1 font-display text-lg font-bold text-foreground">
-                    {pet.size}
-                  </p>
+                  <p className="text-xs font-bold uppercase text-muted-foreground">Size</p>
+                  <p className="mt-1 font-display text-lg font-bold text-foreground">{pet.size}</p>
                 </div>
                 <div className="rounded-2xl border bg-card p-4 shadow-soft">
-                  <p className="text-xs font-bold uppercase text-muted-foreground">
-                    Location
-                  </p>
+                  <p className="text-xs font-bold uppercase text-muted-foreground">Location</p>
                   <p className="mt-1 flex items-center gap-1 font-display text-sm font-bold text-foreground">
                     <MapPin className="size-3.5 text-teal" /> {pet.location}
                   </p>
@@ -234,9 +208,7 @@ function PetDetailPage() {
 
               {/* Personality Traits */}
               <div className="mt-8">
-                <h3 className="font-display text-xl font-bold">
-                  Personality & Temperament
-                </h3>
+                <h3 className="font-display text-xl font-bold">Personality & Temperament</h3>
                 <div className="mt-3 flex flex-wrap gap-2">
                   {pet.traits.map((trait) => (
                     <span
@@ -252,26 +224,21 @@ function PetDetailPage() {
 
               {/* Story Description */}
               <div className="mt-8 rounded-3xl border border-border bg-card p-6 shadow-soft sm:p-8">
-                <h3 className="font-display text-2xl font-bold">
-                  About {pet.name}
-                </h3>
+                <h3 className="font-display text-2xl font-bold">About {pet.name}</h3>
                 <p className="mt-4 text-base leading-7 text-muted-foreground sm:text-lg">
                   {pet.description}
                 </p>
                 <p className="mt-4 text-sm leading-6 text-muted-foreground">
                   {pet.name} is currently cared for by our foster collective at{" "}
-                  <strong>{pet.rescue}</strong>. They have received behavioral
-                  monitoring, social playtime with other animals, and daily
-                  enrichment to ensure they transition smoothly into their new
-                  family.
+                  <strong>{pet.rescue}</strong>. They have received behavioral monitoring, social
+                  playtime with other animals, and daily enrichment to ensure they transition
+                  smoothly into their new family.
                 </p>
               </div>
 
               {/* Compatibility & Good With */}
               <div className="mt-8 rounded-3xl border border-border bg-card p-6 shadow-soft sm:p-8">
-                <h3 className="font-display text-2xl font-bold">
-                  Household Compatibility
-                </h3>
+                <h3 className="font-display text-2xl font-bold">Household Compatibility</h3>
                 <p className="mt-2 text-sm text-muted-foreground">
                   Behavioral observations from foster home evaluations:
                 </p>
@@ -302,9 +269,7 @@ function PetDetailPage() {
                     <div>
                       <p className="font-display font-bold">Children</p>
                       <p className="text-xs text-muted-foreground">
-                        {pet.goodWithChildren
-                          ? "Great with kids"
-                          : "Adult home preferred"}
+                        {pet.goodWithChildren ? "Great with kids" : "Adult home preferred"}
                       </p>
                     </div>
                   </div>
@@ -325,18 +290,12 @@ function PetDetailPage() {
                           : "bg-muted text-muted-foreground",
                       )}
                     >
-                      {pet.goodWithDogs ? (
-                        <Check className="size-5" />
-                      ) : (
-                        <X className="size-5" />
-                      )}
+                      {pet.goodWithDogs ? <Check className="size-5" /> : <X className="size-5" />}
                     </div>
                     <div>
                       <p className="font-display font-bold">Other Dogs</p>
                       <p className="text-xs text-muted-foreground">
-                        {pet.goodWithDogs
-                          ? "Dog-friendly"
-                          : "Prefers being only dog"}
+                        {pet.goodWithDogs ? "Dog-friendly" : "Prefers being only dog"}
                       </p>
                     </div>
                   </div>
@@ -357,18 +316,12 @@ function PetDetailPage() {
                           : "bg-muted text-muted-foreground",
                       )}
                     >
-                      {pet.goodWithCats ? (
-                        <Check className="size-5" />
-                      ) : (
-                        <X className="size-5" />
-                      )}
+                      {pet.goodWithCats ? <Check className="size-5" /> : <X className="size-5" />}
                     </div>
                     <div>
                       <p className="font-display font-bold">Cats</p>
                       <p className="text-xs text-muted-foreground">
-                        {pet.goodWithCats
-                          ? "Cat-friendly"
-                          : "Best without cats"}
+                        {pet.goodWithCats ? "Cat-friendly" : "Best without cats"}
                       </p>
                     </div>
                   </div>
@@ -382,9 +335,7 @@ function PetDetailPage() {
                     <Stethoscope className="size-5" />
                   </div>
                   <div>
-                    <h3 className="font-display text-2xl font-bold">
-                      Veterinary Health Status
-                    </h3>
+                    <h3 className="font-display text-2xl font-bold">Veterinary Health Status</h3>
                     <p className="text-xs text-muted-foreground">
                       Full medical vetting completed by licensed veterinarians
                     </p>
@@ -408,7 +359,8 @@ function PetDetailPage() {
                     <ShieldCheck className="mt-0.5 size-5 shrink-0 text-teal" />
                     <div>
                       <p className="font-display font-bold">
-                        Sterilization: {pet.sterilized ? "Spayed / Neutered" : "Age Pending / Voucher"}
+                        Sterilization:{" "}
+                        {pet.sterilized ? "Spayed / Neutered" : "Age Pending / Voucher"}
                       </p>
                       <p className="mt-0.5 text-xs text-muted-foreground">
                         {pet.sterilized
@@ -421,9 +373,7 @@ function PetDetailPage() {
                   <div className="flex items-start gap-3 rounded-2xl border bg-secondary/30 p-4">
                     <PawPrint className="mt-0.5 size-5 shrink-0 text-teal" />
                     <div>
-                      <p className="font-display font-bold">
-                        Microchipped & Registered
-                      </p>
+                      <p className="font-display font-bold">Microchipped & Registered</p>
                       <p className="mt-0.5 text-xs text-muted-foreground">
                         Pre-implanted lifetime microchip with free contact registry.
                       </p>
@@ -433,9 +383,7 @@ function PetDetailPage() {
                   <div className="flex items-start gap-3 rounded-2xl border bg-secondary/30 p-4">
                     <CheckCircle2 className="mt-0.5 size-5 shrink-0 text-teal" />
                     <div>
-                      <p className="font-display font-bold">
-                        Dewormed & Parasite Free
-                      </p>
+                      <p className="font-display font-bold">Dewormed & Parasite Free</p>
                       <p className="mt-0.5 text-xs text-muted-foreground">
                         Screened for parasites and treated with preventive meds.
                       </p>
@@ -455,19 +403,13 @@ function PetDetailPage() {
                   <span className="font-display text-xs font-bold uppercase text-teal">
                     Adoption Opportunity
                   </span>
-                  <Badge
-                    variant={
-                      pet.status === "Available" ? "default" : "secondary"
-                    }
-                  >
+                  <Badge variant={pet.status === "Available" ? "default" : "secondary"}>
                     {pet.status}
                   </Badge>
                 </div>
 
                 <div className="mt-4 border-b pb-6">
-                  <h3 className="font-display text-3xl font-black">
-                    Adopt {pet.name}
-                  </h3>
+                  <h3 className="font-display text-3xl font-black">Adopt {pet.name}</h3>
                   <p className="mt-1 text-sm text-muted-foreground">
                     Fostered by {pet.rescue} in {pet.location}
                   </p>
@@ -475,23 +417,15 @@ function PetDetailPage() {
 
                 <div className="mt-6 space-y-3">
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">
-                      Standard Adoption Fee:
-                    </span>
-                    <span className="font-display font-bold text-foreground">
-                      ₹2,000 – ₹5,000
-                    </span>
+                    <span className="text-muted-foreground">Standard Adoption Fee:</span>
+                    <span className="font-display font-bold text-foreground">₹2,000 – ₹5,000</span>
                   </div>
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">
-                      Medical Investment:
-                    </span>
+                    <span className="text-muted-foreground">Medical Investment:</span>
                     <span className="font-bold text-teal">Included (₹15,000+ value)</span>
                   </div>
                   <div className="flex items-center justify-between text-sm">
-                    <span className="text-muted-foreground">
-                      Post-Adoption Support:
-                    </span>
+                    <span className="text-muted-foreground">Post-Adoption Support:</span>
                     <span className="font-bold text-foreground">30 Days 24/7</span>
                   </div>
                 </div>
@@ -511,12 +445,7 @@ function PetDetailPage() {
                     className="w-full"
                     onClick={() => toggleFavorite(pet.id, pet.name)}
                   >
-                    <Heart
-                      className={cn(
-                        "size-4 mr-2",
-                        saved && "fill-current text-primary",
-                      )}
-                    />
+                    <Heart className={cn("size-4 mr-2", saved && "fill-current text-primary")} />
                     {saved ? "Saved in Favorites" : "Add to Favorites"}
                   </Button>
                 </div>
@@ -528,21 +457,15 @@ function PetDetailPage() {
 
               {/* Adoption Process Mini Checklist */}
               <div className="rounded-3xl border border-border bg-secondary/50 p-6 shadow-soft">
-                <h4 className="font-display text-lg font-bold">
-                  Adoption Process
-                </h4>
+                <h4 className="font-display text-lg font-bold">Adoption Process</h4>
                 <div className="mt-4 space-y-3 text-xs">
                   <div className="flex items-start gap-2.5">
                     <span className="grid size-5 shrink-0 place-items-center rounded-full bg-primary font-bold text-primary-foreground">
                       1
                     </span>
                     <div>
-                      <p className="font-bold text-foreground">
-                        Submit Application
-                      </p>
-                      <p className="text-muted-foreground">
-                        Online form takes ~5 mins.
-                      </p>
+                      <p className="font-bold text-foreground">Submit Application</p>
+                      <p className="text-muted-foreground">Online form takes ~5 mins.</p>
                     </div>
                   </div>
 
@@ -551,9 +474,7 @@ function PetDetailPage() {
                       2
                     </span>
                     <div>
-                      <p className="font-bold text-foreground">
-                        Meet & Greet Visit
-                      </p>
+                      <p className="font-bold text-foreground">Meet & Greet Visit</p>
                       <p className="text-muted-foreground">
                         Spend relaxed 1-on-1 time with {pet.name}.
                       </p>
@@ -565,9 +486,7 @@ function PetDetailPage() {
                       3
                     </span>
                     <div>
-                      <p className="font-bold text-foreground">
-                        Welcome Home
-                      </p>
+                      <p className="font-bold text-foreground">Welcome Home</p>
                       <p className="text-muted-foreground">
                         Receive medical passport and ongoing care support.
                       </p>
@@ -576,10 +495,7 @@ function PetDetailPage() {
                 </div>
 
                 <div className="mt-5 border-t border-border/80 pt-4 text-center">
-                  <Link
-                    to="/how-it-works"
-                    className="text-xs font-bold text-teal hover:underline"
-                  >
+                  <Link to="/how-it-works" className="text-xs font-bold text-teal hover:underline">
                     Read full adoption guide →
                   </Link>
                 </div>
@@ -617,12 +533,7 @@ function PetDetailPage() {
       </div>
 
       {/* Adoption Form Dialog */}
-      <AdoptionForm
-        open={formOpen}
-        onOpenChange={setFormOpen}
-        petName={pet.name}
-        petId={pet.id}
-      />
+      <AdoptionForm open={formOpen} onOpenChange={setFormOpen} petName={pet.name} petId={pet.id} />
     </main>
   );
 }
@@ -634,12 +545,10 @@ function PetNotFoundPage() {
         <div className="mx-auto grid size-20 place-items-center rounded-3xl bg-primary/15 text-primary">
           <PawPrint className="size-10" />
         </div>
-        <h1 className="mt-6 font-display text-4xl font-black">
-          This Trail Went Cold
-        </h1>
+        <h1 className="mt-6 font-display text-4xl font-black">This Trail Went Cold</h1>
         <p className="mt-3 text-muted-foreground">
-          We couldn’t find this pet profile. They may have already found their
-          forever home or the link is incorrect.
+          We couldn’t find this pet profile. They may have already found their forever home or the
+          link is incorrect.
         </p>
         <div className="mt-8 flex justify-center gap-4">
           <Button asChild>

@@ -82,8 +82,7 @@ export const pets: Pet[] = [
     size: "Small",
     location: "Pune, India",
     image: pet2Luna,
-    description:
-      "A calm, affectionate companion who enjoys quiet afternoons and gentle cuddles.",
+    description: "A calm, affectionate companion who enjoys quiet afternoons and gentle cuddles.",
     traits: ["Calm", "Affectionate", "Gentle"],
     sterilized: false,
     goodWithChildren: true,
@@ -104,8 +103,7 @@ export const pets: Pet[] = [
     size: "Small",
     location: "Bengaluru, India",
     image: pet3Milo,
-    description:
-      "A curious little explorer with velvety ears and a fondness for leafy treats.",
+    description: "A curious little explorer with velvety ears and a fondness for leafy treats.",
     traits: ["Curious", "Quiet", "Sweet"],
     goodWithChildren: true,
     goodWithDogs: false,
@@ -125,8 +123,7 @@ export const pets: Pet[] = [
     size: "Small",
     location: "Chennai, India",
     image: pet4Rio,
-    description:
-      "A clever, social bird who whistles cheerful tunes and enjoys enrichment games.",
+    description: "A clever, social bird who whistles cheerful tunes and enjoys enrichment games.",
     traits: ["Clever", "Social", "Vocal"],
     sterilized: false,
     goodWithChildren: true,
@@ -168,8 +165,7 @@ export const pets: Pet[] = [
     size: "Medium",
     location: "Hyderabad, India",
     image: pet6Simba,
-    description:
-      "A bright, resilient pup who learns quickly and makes friends everywhere he goes.",
+    description: "A bright, resilient pup who learns quickly and makes friends everywhere he goes.",
     traits: ["Smart", "Brave", "Sociable"],
     goodWithChildren: true,
     goodWithDogs: true,
@@ -189,8 +185,7 @@ export const pets: Pet[] = [
     size: "Small",
     location: "Kolkata, India",
     image: pet7Coco,
-    description:
-      "Gentle and tidy, Coco thrives in a calm home with room to hop and explore.",
+    description: "Gentle and tidy, Coco thrives in a calm home with room to hop and explore.",
     traits: ["Gentle", "Neat", "Shy"],
     goodWithChildren: true,
     goodWithDogs: false,
@@ -210,8 +205,7 @@ export const pets: Pet[] = [
     size: "Small",
     location: "Jaipur, India",
     image: pet8Maya,
-    description:
-      "A soft-natured cockatiel who loves music, millet, and being part of the family.",
+    description: "A soft-natured cockatiel who loves music, millet, and being part of the family.",
     traits: ["Musical", "Gentle", "Social"],
     sterilized: false,
     goodWithChildren: true,
@@ -232,8 +226,7 @@ export const pets: Pet[] = [
     size: "Large",
     location: "Goa, India",
     image: pet9Bruno,
-    description:
-      "A mellow gentleman who asks for little more than a soft bed and devoted company.",
+    description: "A mellow gentleman who asks for little more than a soft bed and devoted company.",
     traits: ["Mellow", "Devoted", "Patient"],
     goodWithChildren: true,
     goodWithDogs: true,
@@ -252,8 +245,7 @@ export const pets: Pet[] = [
     size: "Small",
     location: "Ahmedabad, India",
     image: pet10Pepper,
-    description:
-      "A tiny comedian with bright eyes, endless curiosity, and an impressive purr.",
+    description: "A tiny comedian with bright eyes, endless curiosity, and an impressive purr.",
     traits: ["Funny", "Curious", "Bold"],
     sterilized: false,
     goodWithChildren: true,
@@ -273,8 +265,7 @@ export const pets: Pet[] = [
     size: "Small",
     location: "Kochi, India",
     image: pet11Chai,
-    description:
-      "A chatty little foodie who squeaks hello and adores fresh coriander.",
+    description: "A chatty little foodie who squeaks hello and adores fresh coriander.",
     traits: ["Chatty", "Foodie", "Gentle"],
     sterilized: false,
     goodWithChildren: true,
@@ -294,8 +285,7 @@ export const pets: Pet[] = [
     size: "Medium",
     location: "Chandigarh, India",
     image: pet12Tara,
-    description:
-      "An observant, athletic companion who blossoms with patient, positive guidance.",
+    description: "An observant, athletic companion who blossoms with patient, positive guidance.",
     traits: ["Athletic", "Observant", "Loving"],
     goodWithChildren: true,
     goodWithDogs: true,
@@ -314,8 +304,7 @@ export const pets: Pet[] = [
     size: "Small",
     location: "Lucknow, India",
     image: pet13Olive,
-    description:
-      "A dignified lap cat seeking a peaceful home for her golden years.",
+    description: "A dignified lap cat seeking a peaceful home for her golden years.",
     traits: ["Dignified", "Cuddly", "Peaceful"],
     goodWithChildren: false,
     goodWithDogs: false,
@@ -334,8 +323,7 @@ export const pets: Pet[] = [
     size: "Small",
     location: "Bhopal, India",
     image: pet14Piku,
-    description:
-      "A lively budgie who enjoys company, foraging puzzles, and morning chatter.",
+    description: "A lively budgie who enjoys company, foraging puzzles, and morning chatter.",
     traits: ["Lively", "Bright", "Playful"],
     sterilized: false,
     goodWithChildren: true,
@@ -375,8 +363,7 @@ export const pets: Pet[] = [
     size: "Medium",
     location: "Nagpur, India",
     image: pet16Zoya,
-    description:
-      "A spirited puppy with a fantastic nose and an even bigger heart.",
+    description: "A spirited puppy with a fantastic nose and an even bigger heart.",
     traits: ["Spirited", "Curious", "Affectionate"],
     goodWithChildren: true,
     goodWithDogs: true,
@@ -432,4 +419,103 @@ export const successStories = [
 
 export function getPet(id: string | number) {
   return pets.find((pet) => pet.id === Number(id));
+}
+
+export function ageInMonths(age: string): number {
+  if (!age || typeof age !== "string") return 0;
+  const lower = age.toLowerCase().trim();
+
+  let totalMonths = 0;
+  let matched = false;
+
+  const yearMatch = lower.match(/(\d+(?:\.\d+)?)\s*(?:years?|yrs?|y\b)/);
+  const yearVal = yearMatch?.[1];
+  if (yearVal) {
+    totalMonths += parseFloat(yearVal) * 12;
+    matched = true;
+  }
+
+  const monthMatch = lower.match(/(\d+(?:\.\d+)?)\s*(?:months?|mos?|m\b)/);
+  const monthVal = monthMatch?.[1];
+  if (monthVal) {
+    totalMonths += parseFloat(monthVal);
+    matched = true;
+  }
+
+  const weekMatch = lower.match(/(\d+(?:\.\d+)?)\s*(?:weeks?|wks?|w\b)/);
+  const weekVal = weekMatch?.[1];
+  if (weekVal) {
+    totalMonths += parseFloat(weekVal) / 4;
+    matched = true;
+  }
+
+  if (matched) {
+    return totalMonths;
+  }
+
+  const fallback = parseFloat(lower);
+  return isNaN(fallback) ? 0 : fallback;
+}
+
+export type PetFilterOptions = {
+  q?: string;
+  species?: string;
+  location?: string;
+  age?: string;
+  gender?: string;
+  size?: string;
+  breed?: string;
+  good?: string[];
+  sort?: string;
+};
+
+export function filterAndSortPets(
+  petList: Pet[],
+  {
+    q = "",
+    species = "",
+    location = "",
+    age = "",
+    gender = "",
+    size = "",
+    breed = "",
+    good = [],
+    sort = "recommended",
+  }: PetFilterOptions = {},
+): Pet[] {
+  return petList
+    .filter(
+      (p) =>
+        (!q ||
+          p.name.toLowerCase().includes(q.toLowerCase()) ||
+          p.breed.toLowerCase().includes(q.toLowerCase())) &&
+        (!species || p.species === species) &&
+        (!location || p.location.toLowerCase().includes(location.toLowerCase())) &&
+        (!age || p.ageCategory === age) &&
+        (!gender || p.gender === gender) &&
+        (!size || p.size === size) &&
+        (!breed || p.breed.toLowerCase().includes(breed.toLowerCase())) &&
+        (!good.includes("children") || p.goodWithChildren) &&
+        (!good.includes("dogs") || p.goodWithDogs) &&
+        (!good.includes("cats") || p.goodWithCats),
+    )
+    .sort((a, b) => {
+      if (sort === "name") {
+        return a.name.localeCompare(b.name);
+      }
+      if (sort === "age") {
+        return ageInMonths(a.age) - ageInMonths(b.age);
+      }
+      if (sort === "newest") {
+        // Most recent rescue arrivals first (latest added pet IDs first)
+        return b.id - a.id;
+      }
+      // "recommended" (default): featured/ready-to-adopt pets first, then by priority/id
+      const aFeatured = a.featured ? 1 : 0;
+      const bFeatured = b.featured ? 1 : 0;
+      if (bFeatured !== aFeatured) {
+        return bFeatured - aFeatured;
+      }
+      return a.id - b.id;
+    });
 }

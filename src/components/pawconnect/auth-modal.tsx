@@ -297,9 +297,7 @@ export function AuthModal() {
                 </div>
 
                 {signUpError && (
-                  <p className="text-xs font-semibold text-destructive">
-                    {signUpError}
-                  </p>
+                  <p className="text-xs font-semibold text-destructive">{signUpError}</p>
                 )}
 
                 <Button

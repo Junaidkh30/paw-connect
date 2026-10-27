@@ -189,13 +189,11 @@ function AboutPage() {
                 Our Mission & Purpose
               </span>
               <h1 className="mt-6 font-display text-5xl font-black leading-[1.05] sm:text-6xl lg:text-7xl">
-                Giving Every Rescue Pet a{" "}
-                <span className="text-primary">Second Chance.</span>
+                Giving Every Rescue Pet a <span className="text-primary">Second Chance.</span>
               </h1>
               <p className="mt-6 max-w-2xl text-lg leading-8 text-muted-foreground sm:text-xl">
-                PawConnect is dedicated to transforming animal rescue through
-                compassionate foster networks, rigorous medical care, and
-                transparent adoption matching.
+                PawConnect is dedicated to transforming animal rescue through compassionate foster
+                networks, rigorous medical care, and transparent adoption matching.
               </p>
 
               <div className="mt-8 flex flex-wrap gap-4">
@@ -206,10 +204,7 @@ function AboutPage() {
                 </Button>
 
                 {/* Volunteer Dialog */}
-                <Dialog
-                  open={openVolunteerModal}
-                  onOpenChange={setOpenVolunteerModal}
-                >
+                <Dialog open={openVolunteerModal} onOpenChange={setOpenVolunteerModal}>
                   <DialogTrigger asChild>
                     <Button size="lg" variant="outline">
                       <Plus className="size-4" /> Join as a Volunteer
@@ -224,15 +219,12 @@ function AboutPage() {
                         Become a PawConnect Hero
                       </DialogTitle>
                       <DialogDescription>
-                        Lend your time, warmth, and skills to help animals in
-                        need. All experience levels welcome!
+                        Lend your time, warmth, and skills to help animals in need. All experience
+                        levels welcome!
                       </DialogDescription>
                     </DialogHeader>
 
-                    <form
-                      onSubmit={handleVolunteerSubmit}
-                      className="space-y-4 pt-2"
-                    >
+                    <form onSubmit={handleVolunteerSubmit} className="space-y-4 pt-2">
                       <div className="grid gap-4 sm:grid-cols-2">
                         <div>
                           <Label htmlFor="vName">Your Name *</Label>
@@ -315,15 +307,11 @@ function AboutPage() {
                             })
                           }
                         >
-                          <option value="Foster Parent">
-                            Foster Parent (Temporary Home)
-                          </option>
+                          <option value="Foster Parent">Foster Parent (Temporary Home)</option>
                           <option value="Weekend Dog Walker">
                             Weekend Dog Walker & Socializer
                           </option>
-                          <option value="Rescue Transport Driver">
-                            Rescue Transport Driver
-                          </option>
+                          <option value="Rescue Transport Driver">Rescue Transport Driver</option>
                           <option value="Adoption Event Coordinator">
                             Adoption Event Coordinator
                           </option>
@@ -334,9 +322,7 @@ function AboutPage() {
                       </div>
 
                       <div>
-                        <Label htmlFor="vExp">
-                          Tell us briefly about your pet experience
-                        </Label>
+                        <Label htmlFor="vExp">Tell us briefly about your pet experience</Label>
                         <Textarea
                           id="vExp"
                           rows={3}
@@ -399,48 +385,24 @@ function AboutPage() {
           {/* Impact Metric Counters */}
           <div className="mt-16 grid grid-cols-2 gap-4 rounded-3xl border border-surface-glass-border bg-surface-glass p-6 shadow-soft sm:grid-cols-4 lg:p-8">
             <div>
-              <p className="font-display text-4xl font-black text-teal lg:text-5xl">
-                2,500+
-              </p>
-              <p className="mt-1 font-display font-bold text-foreground">
-                Animals Rescued
-              </p>
-              <p className="text-xs text-muted-foreground">
-                Safe from harm & neglect
-              </p>
+              <p className="font-display text-4xl font-black text-teal lg:text-5xl">2,500+</p>
+              <p className="mt-1 font-display font-bold text-foreground">Animals Rescued</p>
+              <p className="text-xs text-muted-foreground">Safe from harm & neglect</p>
             </div>
             <div>
-              <p className="font-display text-4xl font-black text-primary lg:text-5xl">
-                1,800+
-              </p>
-              <p className="mt-1 font-display font-bold text-foreground">
-                Forever Homes
-              </p>
-              <p className="text-xs text-muted-foreground">
-                Loving family adoptions
-              </p>
+              <p className="font-display text-4xl font-black text-primary lg:text-5xl">1,800+</p>
+              <p className="mt-1 font-display font-bold text-foreground">Forever Homes</p>
+              <p className="text-xs text-muted-foreground">Loving family adoptions</p>
             </div>
             <div>
-              <p className="font-display text-4xl font-black text-foreground lg:text-5xl">
-                150+
-              </p>
-              <p className="mt-1 font-display font-bold text-foreground">
-                Partner Shelters
-              </p>
-              <p className="text-xs text-muted-foreground">
-                Collaborative rescue network
-              </p>
+              <p className="font-display text-4xl font-black text-foreground lg:text-5xl">150+</p>
+              <p className="mt-1 font-display font-bold text-foreground">Partner Shelters</p>
+              <p className="text-xs text-muted-foreground">Collaborative rescue network</p>
             </div>
             <div>
-              <p className="font-display text-4xl font-black text-teal lg:text-5xl">
-                400+
-              </p>
-              <p className="mt-1 font-display font-bold text-foreground">
-                Foster Families
-              </p>
-              <p className="text-xs text-muted-foreground">
-                Nurturing temporary homes
-              </p>
+              <p className="font-display text-4xl font-black text-teal lg:text-5xl">400+</p>
+              <p className="mt-1 font-display font-bold text-foreground">Foster Families</p>
+              <p className="text-xs text-muted-foreground">Nurturing temporary homes</p>
             </div>
           </div>
         </div>
@@ -457,8 +419,8 @@ function AboutPage() {
               Principles That Guide Us
             </h2>
             <p className="mt-4 text-muted-foreground">
-              Every decision we make starts and ends with the physical and
-              emotional well-being of the companion animals in our care.
+              Every decision we make starts and ends with the physical and emotional well-being of
+              the companion animals in our care.
             </p>
           </div>
 
@@ -470,17 +432,11 @@ function AboutPage() {
                   key={idx}
                   className="rounded-2xl border-border bg-card p-6 shadow-soft transition-all duration-300 hover:-translate-y-1 hover:shadow-lift"
                 >
-                  <div
-                    className={`grid size-12 place-items-center rounded-2xl ${val.color}`}
-                  >
+                  <div className={`grid size-12 place-items-center rounded-2xl ${val.color}`}>
                     <Icon className="size-6" />
                   </div>
-                  <h3 className="mt-5 font-display text-xl font-bold">
-                    {val.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                    {val.desc}
-                  </p>
+                  <h3 className="mt-5 font-display text-xl font-bold">{val.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{val.desc}</p>
                 </Card>
               );
             })}
@@ -499,8 +455,7 @@ function AboutPage() {
               From Grassroots to Community
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              How a small group of animal advocates built a modern, loving adoption
-              ecosystem.
+              How a small group of animal advocates built a modern, loving adoption ecosystem.
             </p>
           </div>
 
@@ -510,15 +465,9 @@ function AboutPage() {
                 key={idx}
                 className="relative rounded-2xl border border-border bg-card p-6 shadow-soft"
               >
-                <span className="font-display text-3xl font-black text-primary">
-                  {m.year}
-                </span>
-                <h3 className="mt-3 font-display text-xl font-bold text-foreground">
-                  {m.title}
-                </h3>
-                <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                  {m.desc}
-                </p>
+                <span className="font-display text-3xl font-black text-primary">{m.year}</span>
+                <h3 className="mt-3 font-display text-xl font-bold text-foreground">{m.title}</h3>
+                <p className="mt-2 text-sm leading-6 text-muted-foreground">{m.desc}</p>
               </div>
             ))}
           </div>
@@ -538,8 +487,7 @@ function AboutPage() {
               </h2>
             </div>
             <p className="max-w-md text-sm text-muted-foreground">
-              Veterinarians, ethologists, and rescue coordinators devoted to
-              animal welfare.
+              Veterinarians, ethologists, and rescue coordinators devoted to animal welfare.
             </p>
           </div>
 
@@ -561,19 +509,11 @@ function AboutPage() {
                   </span>
                 </div>
                 <CardContent className="p-6">
-                  <h3 className="font-display text-xl font-bold">
-                    {member.name}
-                  </h3>
-                  <p className="text-xs font-semibold text-primary">
-                    {member.role}
-                  </p>
-                  <p className="mt-3 text-xs leading-5 text-muted-foreground">
-                    {member.bio}
-                  </p>
+                  <h3 className="font-display text-xl font-bold">{member.name}</h3>
+                  <p className="text-xs font-semibold text-primary">{member.role}</p>
+                  <p className="mt-3 text-xs leading-5 text-muted-foreground">{member.bio}</p>
                   <div className="mt-4 border-t pt-3">
-                    <p className="text-[11px] font-semibold text-teal">
-                      🐾 {member.pet}
-                    </p>
+                    <p className="text-[11px] font-semibold text-teal">🐾 {member.pet}</p>
                   </div>
                 </CardContent>
               </Card>
@@ -594,9 +534,8 @@ function AboutPage() {
                 We’d Love to Hear From You
               </h2>
               <p className="mt-4 text-base leading-7 text-muted-foreground">
-                Whether you have questions about adoption, want to foster an
-                animal, or want to partner with your shelter, our team is always
-                here to help.
+                Whether you have questions about adoption, want to foster an animal, or want to
+                partner with your shelter, our team is always here to help.
               </p>
 
               <div className="mt-8 space-y-4">
@@ -622,9 +561,7 @@ function AboutPage() {
                     <p className="text-xs font-bold uppercase text-muted-foreground">
                       Adoption Desk Phone
                     </p>
-                    <p className="font-display font-bold text-foreground">
-                      +91 (022) 4567-8900
-                    </p>
+                    <p className="font-display font-bold text-foreground">+91 (022) 4567-8900</p>
                   </div>
                 </div>
 
@@ -646,9 +583,7 @@ function AboutPage() {
 
             <div className="lg:col-span-6">
               <div className="rounded-3xl border border-border bg-card p-8 shadow-soft">
-                <h3 className="font-display text-2xl font-bold">
-                  Send Us a Direct Message
-                </h3>
+                <h3 className="font-display text-2xl font-bold">Send Us a Direct Message</h3>
                 <p className="mt-1 text-xs text-muted-foreground">
                   Demo contact form · Responds instantly in this browser
                 </p>
@@ -665,12 +600,7 @@ function AboutPage() {
                 >
                   <div>
                     <Label htmlFor="cName">Your Name</Label>
-                    <Input
-                      id="cName"
-                      required
-                      placeholder="e.g. Rahul Sharma"
-                      className="mt-1.5"
-                    />
+                    <Input id="cName" required placeholder="e.g. Rahul Sharma" className="mt-1.5" />
                   </div>
                   <div>
                     <Label htmlFor="cEmail">Email Address</Label>
@@ -713,8 +643,8 @@ function AboutPage() {
             Be Part of Their Second Chance
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-ink-muted">
-            Whether adopting, donating, or fostering, your kindness directly
-            changes an animal’s life forever.
+            Whether adopting, donating, or fostering, your kindness directly changes an animal’s
+            life forever.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Button asChild size="lg">

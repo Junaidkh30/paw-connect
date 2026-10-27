@@ -6,30 +6,33 @@ import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Input } from "@/components/ui/input";
 import { Skeleton } from "@/components/ui/skeleton";
-import { pets } from "@/data/pets";
+import { filterAndSortPets, pets } from "@/data/pets";
 import { cn } from "@/lib/utils";
 
-type SearchParams = { q?: string; species?: string; location?: string };
+type SearchParams = {
+  q?: string | undefined;
+  species?: string | undefined;
+  location?: string | undefined;
+};
 
 export const Route = createFileRoute("/pets/")({
-  validateSearch: (s: Record<string, unknown>): SearchParams => ({
-    q: typeof s.q === "string" ? s.q : undefined,
-    species: typeof s.species === "string" ? s.species : undefined,
-    location: typeof s.location === "string" ? s.location : undefined,
-  }),
+  validateSearch: (s: Record<string, unknown>): SearchParams => {
+    const q = typeof s["q"] === "string" ? s["q"] : undefined;
+    const species = typeof s["species"] === "string" ? s["species"] : undefined;
+    const location = typeof s["location"] === "string" ? s["location"] : undefined;
+    return { q, species, location };
+  },
   head: () => ({
     meta: [
       { title: "Find a Pet — PawConnect" },
       {
         name: "description",
-        content:
-          "Explore 16 fictional rescue pet profiles with local search and filters.",
+        content: "Explore 16 fictional rescue pet profiles with local search and filters.",
       },
       { property: "og:title", content: "Find Your New Best Friend — PawConnect" },
       {
         property: "og:description",
-        content:
-          "Search and filter fictional rescue pets in this frontend-only demo.",
+        content: "Search and filter fictional rescue pets in this frontend-only demo.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
@@ -62,31 +65,17 @@ function PetsPage() {
 
   const filtered = useMemo(
     () =>
-      pets
-        .filter(
-          (p) =>
-            (!q ||
-              p.name.toLowerCase().includes(q.toLowerCase()) ||
-              p.breed.toLowerCase().includes(q.toLowerCase())) &&
-            (!species || p.species === species) &&
-            (!location ||
-              p.location.toLowerCase().includes(location.toLowerCase())) &&
-            (!age || p.ageCategory === age) &&
-            (!gender || p.gender === gender) &&
-            (!size || p.size === size) &&
-            (!breed ||
-              p.breed.toLowerCase().includes(breed.toLowerCase())) &&
-            (!good.includes("children") || p.goodWithChildren) &&
-            (!good.includes("dogs") || p.goodWithDogs) &&
-            (!good.includes("cats") || p.goodWithCats),
-        )
-        .sort((a, b) =>
-          sort === "name"
-            ? a.name.localeCompare(b.name)
-            : sort === "age"
-              ? parseFloat(a.age) - parseFloat(b.age)
-              : b.arrival - a.arrival,
-        ),
+      filterAndSortPets(pets, {
+        q,
+        species,
+        location,
+        age,
+        gender,
+        size,
+        breed,
+        good,
+        sort,
+      }),
     [q, species, location, age, gender, size, breed, good, sort],
   );
 
@@ -102,9 +91,7 @@ function PetsPage() {
   };
 
   const toggleGood = (x: string) =>
-    setGood((v) =>
-      v.includes(x) ? v.filter((i) => i !== x) : [...v, x],
-    );
+    setGood((v) => (v.includes(x) ? v.filter((i) => i !== x) : [...v, x]));
 
   const Filters = () => (
     <div className="space-y-5">
@@ -115,11 +102,7 @@ function PetsPage() {
         </Button>
       </div>
       <Field label="Pet name or breed">
-        <Input
-          value={q}
-          onChange={(e) => setQ(e.target.value)}
-          placeholder="Try Luna or Beagle"
-        />
+        <Input value={q} onChange={(e) => setQ(e.target.value)} placeholder="Try Luna or Beagle" />
       </Field>
       <Field label="Species">
         <Select
@@ -129,34 +112,18 @@ function PetsPage() {
         />
       </Field>
       <Field label="Breed">
-        <Input
-          value={breed}
-          onChange={(e) => setBreed(e.target.value)}
-          placeholder="Any breed"
-        />
+        <Input value={breed} onChange={(e) => setBreed(e.target.value)} placeholder="Any breed" />
       </Field>
       <div className="grid grid-cols-2 gap-3">
         <Field label="Age">
-          <Select
-            value={age}
-            set={setAge}
-            options={["Baby", "Young", "Adult", "Senior"]}
-          />
+          <Select value={age} set={setAge} options={["Baby", "Young", "Adult", "Senior"]} />
         </Field>
         <Field label="Gender">
-          <Select
-            value={gender}
-            set={setGender}
-            options={["Male", "Female"]}
-          />
+          <Select value={gender} set={setGender} options={["Male", "Female"]} />
         </Field>
       </div>
       <Field label="Size">
-        <Select
-          value={size}
-          set={setSize}
-          options={["Small", "Medium", "Large"]}
-        />
+        <Select value={size} set={setSize} options={["Small", "Medium", "Large"]} />
       </Field>
       <Field label="Location">
         <Input
@@ -168,16 +135,13 @@ function PetsPage() {
       <div>
         <p className="mb-3 text-sm font-bold">Good with</p>
         {[
-          ["children", "Children"],
-          ["dogs", "Dogs"],
-          ["cats", "Cats"],
-        ].map(([k, l]) => (
-          <label key={k} className="mb-2 flex items-center gap-2 text-sm">
-            <Checkbox
-              checked={good.includes(k)}
-              onCheckedChange={() => toggleGood(k)}
-            />
-            {l}
+          { key: "children", label: "Children" },
+          { key: "dogs", label: "Dogs" },
+          { key: "cats", label: "Cats" },
+        ].map(({ key, label }) => (
+          <label key={key} className="mb-2 flex items-center gap-2 text-sm">
+            <Checkbox checked={good.includes(key)} onCheckedChange={() => toggleGood(key)} />
+            {label}
           </label>
         ))}
       </div>
@@ -188,15 +152,12 @@ function PetsPage() {
     <main className="page-enter min-h-screen">
       <section className="border-b bg-secondary">
         <div className="mx-auto max-w-7xl px-5 py-14 lg:px-8">
-          <span className="text-sm font-extrabold uppercase text-teal">
-            Meet your match
-          </span>
+          <span className="text-sm font-extrabold uppercase text-teal">Meet your match</span>
           <h1 className="mt-2 font-display text-5xl font-black sm:text-6xl">
             Find Your New Best Friend.
           </h1>
           <p className="mt-4 max-w-2xl text-muted-foreground">
-            Explore fictional profiles and discover the kind of companion who
-            could fit your life.
+            Explore fictional profiles and discover the kind of companion who could fit your life.
           </p>
         </div>
       </section>
@@ -232,9 +193,7 @@ function PetsPage() {
           <section>
             <div className="mb-5 grid grid-cols-[minmax(0,1fr)_auto] items-center gap-3">
               <div className="min-w-0">
-                <p className="font-display text-xl font-bold">
-                  {filtered.length} pets found
-                </p>
+                <p className="font-display text-xl font-bold">{filtered.length} pets found</p>
                 <p className="text-xs text-muted-foreground">
                   All profiles are fictional demo content.
                 </p>
@@ -272,12 +231,7 @@ function PetsPage() {
               </div>
             </div>
             {loading ? (
-              <div
-                className={cn(
-                  "grid gap-6",
-                  view === "grid" && "sm:grid-cols-2 xl:grid-cols-3",
-                )}
-              >
+              <div className={cn("grid gap-6", view === "grid" && "sm:grid-cols-2 xl:grid-cols-3")}>
                 {Array.from({ length: 6 }).map((_, i) => (
                   <div key={i} className="space-y-3">
                     <Skeleton className="aspect-[4/3] rounded-2xl" />
@@ -289,10 +243,7 @@ function PetsPage() {
             ) : filtered.length ? (
               <>
                 <div
-                  className={cn(
-                    "grid gap-6",
-                    view === "grid" && "sm:grid-cols-2 xl:grid-cols-3",
-                  )}
+                  className={cn("grid gap-6", view === "grid" && "sm:grid-cols-2 xl:grid-cols-3")}
                 >
                   {filtered.slice(0, limit).map((p) => (
                     <PetCard key={p.id} pet={p} view={view} />
@@ -300,10 +251,7 @@ function PetsPage() {
                 </div>
                 {limit < filtered.length && (
                   <div className="mt-10 text-center">
-                    <Button
-                      variant="outline"
-                      onClick={() => setLimit((v) => v + 6)}
-                    >
+                    <Button variant="outline" onClick={() => setLimit((v) => v + 6)}>
                       Load more pets
                     </Button>
                   </div>
@@ -312,9 +260,7 @@ function PetsPage() {
             ) : (
               <div className="rounded-2xl border border-dashed py-20 text-center">
                 <X className="mx-auto size-10 text-primary" />
-                <h2 className="mt-4 font-display text-2xl font-bold">
-                  No paws found here
-                </h2>
+                <h2 className="mt-4 font-display text-2xl font-bold">No paws found here</h2>
                 <p className="mt-2 text-muted-foreground">
                   Try loosening a filter to meet more pets.
                 </p>
@@ -330,13 +276,7 @@ function PetsPage() {
   );
 }
 
-function Field({
-  label,
-  children,
-}: {
-  label: string;
-  children: React.ReactNode;
-}) {
+function Field({ label, children }: { label: string; children: React.ReactNode }) {
   return (
     <label className="block text-sm font-bold">
       {label}

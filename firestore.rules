@@ -1,0 +1,27 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // User profile and personal preferences (e.g. favorites array)
+    match /users/{userId} {
+      allow read, write: if request.auth != null && request.auth.uid == userId;
+    }
+
+    // Adoption applications
+    match /applications/{appId} {
+      // Allow logged in users under their own UID, or unauthenticated guests
+      allow create: if (
+        (request.auth != null && request.resource.data.userId == request.auth.uid) ||
+        (request.auth == null && request.resource.data.userId == "guest")
+      ) &&
+      request.resource.data.applicantName is string &&
+      request.resource.data.applicantEmail is string &&
+      request.resource.data.petName is string;
+
+      // Only the submitting user can view their application
+      allow read: if request.auth != null && resource.data.userId == request.auth.uid;
+
+      // Disallow modifications or deletions from client applications
+      allow update, delete: if false;
+    }
+  }
+}

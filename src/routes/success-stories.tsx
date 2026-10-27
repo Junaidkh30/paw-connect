@@ -96,11 +96,7 @@ const defaultStories: SuccessStory[] = [
       "Mochi transformed our evening routine into pure happiness. He's not just a pet; he is our child's most loyal guardian.",
     story:
       "When Mochi arrived at the shelter, he was shy and unsure of himself after being rescued from a highway construction site. Aarav and Neha visited him twice and gave him the patience he needed. By day 4 in their apartment, Mochi claimed the sunny balcony spot and brought his favorite yellow ball to the breakfast table. Today, he greets every neighbor with cheerful tail wags and is fully house-trained!",
-    milestones: [
-      "Overcame car anxiety",
-      "Passed beginner obedience",
-      "Beach explorer",
-    ],
+    milestones: ["Overcame car anxiety", "Passed beginner obedience", "Beach explorer"],
     initialLikes: 142,
   },
   {
@@ -116,11 +112,7 @@ const defaultStories: SuccessStory[] = [
       "She brought a calm, therapeutic rhythm to our bustling home. The children read bedtime stories to her every evening.",
     story:
       "Mishti was discovered with a litter of 4 kittens in an abandoned warehouse. After all her kittens were adopted, Mishti waited patiently for 6 months. The Iyer family saw her profile and fell in love with her gentle emerald eyes. Within two weeks, she established herself as the official supervisor of homeschool hours and loves curling up beside anyone typing on a laptop.",
-    milestones: [
-      "Lap cuddle champion",
-      "Gentle with toddlers",
-      "Bird-watching enthusiast",
-    ],
+    milestones: ["Lap cuddle champion", "Gentle with toddlers", "Bird-watching enthusiast"],
     initialLikes: 98,
   },
   {
@@ -136,11 +128,7 @@ const defaultStories: SuccessStory[] = [
       "Learning Pip’s silent vocabulary and watching him binky across the living room carpet has brought so much peace to my work-from-home life.",
     story:
       "Pip was surrendered when his previous owners moved abroad. Rhea, an architect working remotely, was looking for a quiet companion. She bunny-proofed her living room, set up a custom two-level castle, and introduced Pip to organic cilantro treats. Today, Pip follows Rhea like a little shadow whenever it's time for lunch snacks.",
-    milestones: [
-      "Litter-box pro",
-      "Free-roam certified",
-      "Master of zoomies",
-    ],
+    milestones: ["Litter-box pro", "Free-roam certified", "Master of zoomies"],
     initialLikes: 76,
   },
   {
@@ -156,11 +144,7 @@ const defaultStories: SuccessStory[] = [
       "Our home is filled with cheerful whistles and morning chatter. Adopting bonded birds was the best decision we ever made.",
     story:
       "Rio and Sunny were rescued together and couldn't bear to be separated. Dev and Priya built an expansive indoor flight aviary filled with safe eucalyptus branches and foraging puzzles. The duo now performs gentle whistle serenades every morning at sunrise and loves preening Priya's hair while she reads.",
-    milestones: [
-      "Target trained",
-      "Bonded pair thriving",
-      "Foraging puzzle master",
-    ],
+    milestones: ["Target trained", "Bonded pair thriving", "Foraging puzzle master"],
     initialLikes: 84,
   },
   {
@@ -176,11 +160,7 @@ const defaultStories: SuccessStory[] = [
       "Indie dogs have the biggest hearts and incredible resilience. Simba learned commands in just one week and loves trekking.",
     story:
       "Found shivering in a rainy alleyway as a 3-month pup, Simba showed incredible spirit from day one. Karan wanted an energetic hiking companion who could handle outdoor trails. After positive reinforcement training and lots of nutritious meals, Simba has grown into a sleek, athletic, and fiercely loving partner.",
-    milestones: [
-      "Weekend trail runner",
-      "10+ trick repertoire",
-      "Indie advocacy icon",
-    ],
+    milestones: ["Weekend trail runner", "10+ trick repertoire", "Indie advocacy icon"],
     initialLikes: 165,
   },
   {
@@ -196,11 +176,7 @@ const defaultStories: SuccessStory[] = [
       "They were terrified at the shelter, but patience and high window perches gave them the security to blossom.",
     story:
       "These two shelter seniors had spent nearly a year in foster care. Meera gave them a quiet sanctuary room with soft blankets, zero rush, and warm heating pads. Within a month, Nala began headbutting Meera for cheek scratches, and Oliver started purring like a gentle motor every time dinner was served.",
-    milestones: [
-      "Senior adoption victory",
-      "Double cuddle power",
-      "Window garden guards",
-    ],
+    milestones: ["Senior adoption victory", "Double cuddle power", "Window garden guards"],
     initialLikes: 112,
   },
 ];
@@ -284,8 +260,7 @@ function SuccessStoriesPage() {
 
   const filteredStories = useMemo(() => {
     return stories.filter((story) => {
-      const matchesSpecies =
-        selectedSpecies === "All" || story.species === selectedSpecies;
+      const matchesSpecies = selectedSpecies === "All" || story.species === selectedSpecies;
       const matchesSearch =
         !searchQuery ||
         story.pet.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -309,13 +284,11 @@ function SuccessStoriesPage() {
               Paws & Happy Endings
             </span>
             <h1 className="mt-6 font-display text-5xl font-black leading-[1.05] sm:text-6xl lg:text-7xl">
-              Tails of Joy:{" "}
-              <span className="text-primary">Real Adoption Journeys.</span>
+              Tails of Joy: <span className="text-primary">Real Adoption Journeys.</span>
             </h1>
             <p className="mt-6 text-lg leading-8 text-muted-foreground sm:text-xl">
-              Every adoption is the beginning of an extraordinary bond. Explore
-              inspiring stories of rescue animals who found safety, warmth, and
-              lifelong love with their new families.
+              Every adoption is the beginning of an extraordinary bond. Explore inspiring stories of
+              rescue animals who found safety, warmth, and lifelong love with their new families.
             </p>
 
             <div className="mt-8 flex flex-wrap justify-center gap-4">
@@ -341,8 +314,8 @@ function SuccessStoriesPage() {
                       Share Your Adoption Story
                     </DialogTitle>
                     <DialogDescription>
-                      Inspire others to choose rescue. Tell us about your pet's
-                      journey and what they mean to your family.
+                      Inspire others to choose rescue. Tell us about your pet's journey and what
+                      they mean to your family.
                     </DialogDescription>
                   </DialogHeader>
 
@@ -356,9 +329,7 @@ function SuccessStoriesPage() {
                           className="mt-1.5"
                           placeholder="e.g. Mochi, Luna"
                           value={formData.pet}
-                          onChange={(e) =>
-                            setFormData({ ...formData, pet: e.target.value })
-                          }
+                          onChange={(e) => setFormData({ ...formData, pet: e.target.value })}
                         />
                       </div>
                       <div>
@@ -390,9 +361,7 @@ function SuccessStoriesPage() {
                           className="mt-1.5"
                           placeholder="e.g. Indie Mix, Golden"
                           value={formData.breed}
-                          onChange={(e) =>
-                            setFormData({ ...formData, breed: e.target.value })
-                          }
+                          onChange={(e) => setFormData({ ...formData, breed: e.target.value })}
                         />
                       </div>
                       <div>
@@ -403,9 +372,7 @@ function SuccessStoriesPage() {
                           className="mt-1.5"
                           placeholder="e.g. Priya & Rahul"
                           value={formData.adopter}
-                          onChange={(e) =>
-                            setFormData({ ...formData, adopter: e.target.value })
-                          }
+                          onChange={(e) => setFormData({ ...formData, adopter: e.target.value })}
                         />
                       </div>
                     </div>
@@ -417,9 +384,7 @@ function SuccessStoriesPage() {
                         className="mt-1.5"
                         placeholder="e.g. Pune, India"
                         value={formData.location}
-                        onChange={(e) =>
-                          setFormData({ ...formData, location: e.target.value })
-                        }
+                        onChange={(e) => setFormData({ ...formData, location: e.target.value })}
                       />
                     </div>
 
@@ -431,9 +396,7 @@ function SuccessStoriesPage() {
                         className="mt-1.5"
                         placeholder="e.g. He completed our family from day one."
                         value={formData.quote}
-                        onChange={(e) =>
-                          setFormData({ ...formData, quote: e.target.value })
-                        }
+                        onChange={(e) => setFormData({ ...formData, quote: e.target.value })}
                       />
                     </div>
 
@@ -446,18 +409,12 @@ function SuccessStoriesPage() {
                         className="mt-1.5"
                         placeholder="Share the details: how they settled in, their favorite habits, and what makes them special..."
                         value={formData.story}
-                        onChange={(e) =>
-                          setFormData({ ...formData, story: e.target.value })
-                        }
+                        onChange={(e) => setFormData({ ...formData, story: e.target.value })}
                       />
                     </div>
 
                     <div className="flex justify-end gap-3 pt-3">
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        onClick={() => setOpenModal(false)}
-                      >
+                      <Button type="button" variant="ghost" onClick={() => setOpenModal(false)}>
                         Cancel
                       </Button>
                       <Button type="submit">
@@ -472,36 +429,20 @@ function SuccessStoriesPage() {
             {/* Impact Counter Bar */}
             <div className="mt-12 grid grid-cols-2 gap-4 rounded-2xl border border-surface-glass-border bg-surface-glass p-5 shadow-soft sm:grid-cols-4">
               <div>
-                <p className="font-display text-3xl font-black text-teal">
-                  1,800+
-                </p>
-                <p className="text-xs font-semibold text-muted-foreground">
-                  Forever Adoptions
-                </p>
+                <p className="font-display text-3xl font-black text-teal">1,800+</p>
+                <p className="text-xs font-semibold text-muted-foreground">Forever Adoptions</p>
               </div>
               <div>
-                <p className="font-display text-3xl font-black text-primary">
-                  98.6%
-                </p>
-                <p className="text-xs font-semibold text-muted-foreground">
-                  Permanent Match Rate
-                </p>
+                <p className="font-display text-3xl font-black text-primary">98.6%</p>
+                <p className="text-xs font-semibold text-muted-foreground">Permanent Match Rate</p>
               </div>
               <div>
-                <p className="font-display text-3xl font-black text-foreground">
-                  150+
-                </p>
-                <p className="text-xs font-semibold text-muted-foreground">
-                  Partner Shelters
-                </p>
+                <p className="font-display text-3xl font-black text-foreground">150+</p>
+                <p className="text-xs font-semibold text-muted-foreground">Partner Shelters</p>
               </div>
               <div>
-                <p className="font-display text-3xl font-black text-teal">
-                  100%
-                </p>
-                <p className="text-xs font-semibold text-muted-foreground">
-                  Lifelong Care Circle
-                </p>
+                <p className="font-display text-3xl font-black text-teal">100%</p>
+                <p className="text-xs font-semibold text-muted-foreground">Lifelong Care Circle</p>
               </div>
             </div>
           </div>
@@ -558,9 +499,7 @@ function SuccessStoriesPage() {
                     “{featured.quote}”
                   </blockquote>
 
-                  <p className="mt-6 text-base leading-7 text-muted-foreground">
-                    {featured.story}
-                  </p>
+                  <p className="mt-6 text-base leading-7 text-muted-foreground">{featured.story}</p>
 
                   <div className="mt-6">
                     <p className="text-xs font-extrabold uppercase tracking-wider text-muted-foreground">
@@ -589,9 +528,7 @@ function SuccessStoriesPage() {
                       <p className="font-display text-sm font-bold text-foreground">
                         {featured.pet}
                       </p>
-                      <p className="text-xs text-muted-foreground">
-                        Adopted by {featured.adopter}
-                      </p>
+                      <p className="text-xs text-muted-foreground">Adopted by {featured.adopter}</p>
                     </div>
                   </div>
 
@@ -602,9 +539,7 @@ function SuccessStoriesPage() {
                     onClick={() => toggleLike(featured.id)}
                   >
                     <Heart
-                      className={`size-4 ${
-                        likedIds.includes(featured.id) ? "fill-current" : ""
-                      }`}
+                      className={`size-4 ${likedIds.includes(featured.id) ? "fill-current" : ""}`}
                     />
                     <span>{featured.initialLikes}</span>
                   </Button>
@@ -707,9 +642,7 @@ function SuccessStoriesPage() {
                         “{story.quote}”
                       </blockquote>
 
-                      <p className="mt-3 text-sm leading-6 text-muted-foreground">
-                        {story.story}
-                      </p>
+                      <p className="mt-3 text-sm leading-6 text-muted-foreground">{story.story}</p>
 
                       {/* Milestones */}
                       <div className="mt-4 flex flex-wrap gap-1.5">
@@ -736,9 +669,7 @@ function SuccessStoriesPage() {
                       className="gap-1.5"
                       onClick={() => toggleLike(story.id)}
                     >
-                      <Heart
-                        className={`size-4 ${isLiked ? "fill-current" : ""}`}
-                      />
+                      <Heart className={`size-4 ${isLiked ? "fill-current" : ""}`} />
                       <span>{story.initialLikes}</span>
                     </Button>
                   </div>
@@ -750,9 +681,7 @@ function SuccessStoriesPage() {
           {filteredStories.length === 0 && (
             <div className="my-12 rounded-3xl border border-dashed py-16 text-center">
               <PawPrint className="mx-auto size-12 text-muted-foreground" />
-              <h3 className="mt-4 font-display text-2xl font-bold">
-                No stories match your search
-              </h3>
+              <h3 className="mt-4 font-display text-2xl font-bold">No stories match your search</h3>
               <p className="mt-2 text-sm text-muted-foreground">
                 Try selecting a different pet category or clearing the search box.
               </p>
@@ -782,8 +711,8 @@ function SuccessStoriesPage() {
               The Ripple Effect of Love
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              When you adopt from a shelter or rescue, you aren’t just gaining a
-              best friend—you are opening up a spot for another life to be saved.
+              When you adopt from a shelter or rescue, you aren’t just gaining a best friend—you are
+              opening up a spot for another life to be saved.
             </p>
           </div>
 
@@ -807,19 +736,12 @@ function SuccessStoriesPage() {
             ].map((item, idx) => {
               const Icon = item.icon;
               return (
-                <Card
-                  key={idx}
-                  className="rounded-2xl border-border bg-card p-6 shadow-soft"
-                >
+                <Card key={idx} className="rounded-2xl border-border bg-card p-6 shadow-soft">
                   <div className="grid size-12 place-items-center rounded-2xl bg-primary/15 text-primary">
                     <Icon className="size-6" />
                   </div>
-                  <h3 className="mt-5 font-display text-xl font-bold">
-                    {item.title}
-                  </h3>
-                  <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                    {item.desc}
-                  </p>
+                  <h3 className="mt-5 font-display text-xl font-bold">{item.title}</h3>
+                  <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.desc}</p>
                 </Card>
               );
             })}
@@ -838,8 +760,8 @@ function SuccessStoriesPage() {
             Ready to Find Your Companion?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-ink-muted">
-            There is a rescue animal waiting right now to share their life,
-            laughter, and devotion with you.
+            There is a rescue animal waiting right now to share their life, laughter, and devotion
+            with you.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Button asChild size="lg">

@@ -56,10 +56,7 @@ export function Navbar() {
   return (
     <header className="sticky top-0 z-40 border-b border-border/70 bg-background/90 backdrop-blur-xl">
       <div className="mx-auto grid h-18 max-w-7xl grid-cols-[minmax(0,1fr)_auto] items-center gap-3 px-4 lg:flex lg:px-8">
-        <Link
-          to="/"
-          className="flex min-w-0 items-center gap-2 font-display text-xl font-black"
-        >
+        <Link to="/" className="flex min-w-0 items-center gap-2 font-display text-xl font-black">
           <span className="grid size-10 shrink-0 place-items-center rounded-xl bg-primary text-primary-foreground shadow-warm">
             <PawPrint />
           </span>
@@ -84,12 +81,7 @@ export function Navbar() {
 
         <div className="flex shrink-0 items-center gap-2">
           {/* Theme toggle */}
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleTheme}
-            aria-label="Toggle theme"
-          >
+          <Button variant="ghost" size="icon" onClick={toggleTheme} aria-label="Toggle theme">
             {theme === "light" ? <Moon className="size-5" /> : <Sun className="size-5" />}
           </Button>
 
@@ -112,7 +104,10 @@ export function Navbar() {
                   className="relative size-9 rounded-full p-0 ring-offset-background transition-all hover:ring-2 hover:ring-primary focus-visible:ring-2 focus-visible:ring-primary"
                 >
                   <Avatar className="size-9 border border-border">
-                    <AvatarImage src={user.photoURL || undefined} alt={user.displayName || "User"} />
+                    <AvatarImage
+                      src={user.photoURL || undefined}
+                      alt={user.displayName || "User"}
+                    />
                     <AvatarFallback className="bg-primary/20 text-primary font-bold text-xs">
                       {userInitials}
                     </AvatarFallback>
@@ -150,7 +145,11 @@ export function Navbar() {
             <Button
               variant="outline"
               size="sm"
-              onClick={() => openAuthModal("Sign in to save your favorite pets and submit adoption applications.")}
+              onClick={() =>
+                openAuthModal(
+                  "Sign in to save your favorite pets and submit adoption applications.",
+                )
+              }
               className="gap-1.5 font-bold"
             >
               <UserIcon className="size-4" />
@@ -221,8 +220,8 @@ export function Footer() {
             PawConnect
           </div>
           <p className="mt-4 max-w-sm text-sm leading-6 text-ink-muted">
-            Connecting rescue companion animals with loving forever families. Every pet
-            deserves a safe home, proper healthcare, and lifelong dignity.
+            Connecting rescue companion animals with loving forever families. Every pet deserves a
+            safe home, proper healthcare, and lifelong dignity.
           </p>
           <span className="mt-4 inline-flex items-center gap-1.5 rounded-full border border-ink-border px-3 py-1 text-xs font-bold text-ink-muted">
             <Heart className="size-3 text-primary fill-current" />
@@ -260,9 +259,7 @@ export function Footer() {
             <Mail className="size-4 text-primary shrink-0" />
             junaidstudy123@gmail.com
           </a>
-          <p className="mt-2 text-xs text-ink-muted/80">
-            Volunteer & adoption desk helpline
-          </p>
+          <p className="mt-2 text-xs text-ink-muted/80">Volunteer & adoption desk helpline</p>
           <div className="mt-4 flex gap-2">
             <Button variant="footer" size="icon" aria-label="Instagram">
               <Instagram />

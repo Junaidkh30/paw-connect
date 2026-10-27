@@ -25,7 +25,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { useAuth } from "@/context/auth-context";
 import { db } from "@/lib/firebase";
 
-type Form = {
+export type Form = {
   name: string;
   email: string;
   phone: string;
@@ -38,6 +38,25 @@ type Form = {
   experience: string;
   availability: string;
 };
+
+export type AdoptionFormData = Form;
+
+export function validateAdoptionForm(step: number, form: Form): string[] {
+  const required =
+    step === 1
+      ? ["name", "email", "phone", "city"]
+      : step === 2
+        ? ["housing", "tenure", "otherPets", "children"]
+        : ["motivation", "experience", "availability"];
+
+  const missing = required.filter((k) => !form[k as keyof Form].trim());
+
+  if (step === 1 && !/^\S+@\S+\.\S+$/.test(form.email)) {
+    missing.push("valid email");
+  }
+
+  return missing;
+}
 
 const initial: Form = {
   name: "",
@@ -83,22 +102,10 @@ export function AdoptionForm({
     }
   }, [user, open]);
 
-  const update = (key: keyof Form, value: string) =>
-    setForm((v) => ({ ...v, [key]: value }));
+  const update = (key: keyof Form, value: string) => setForm((v) => ({ ...v, [key]: value }));
 
   const next = () => {
-    const required =
-      step === 1
-        ? ["name", "email", "phone", "city"]
-        : step === 2
-          ? ["housing", "tenure", "otherPets", "children"]
-          : ["motivation", "experience", "availability"];
-
-    const missing = required.filter((k) => !form[k as keyof Form].trim());
-
-    if (step === 1 && !/^\S+@\S+\.\S+$/.test(form.email)) {
-      missing.push("valid email");
-    }
+    const missing = validateAdoptionForm(step, form);
 
     setErrors(missing);
     if (!missing.length) {
@@ -133,11 +140,11 @@ export function AdoptionForm({
       setDone(true);
       toast.success(`Application submitted for ${petName}!`);
     } catch (err) {
-      console.warn("Firestore write fallback (offline or pending rules):", err);
-      // Still show successful client confirmation
-      setApplicationId(`APP-${Math.random().toString(36).substring(2, 8).toUpperCase()}`);
-      setDone(true);
-      toast.success(`Application submitted for ${petName}!`);
+      console.error("Firestore application submission error:", err);
+      toast.error(
+        "Could not save application to Firestore. Please check your connection and try again.",
+      );
+      setDone(false);
     } finally {
       setSubmitting(false);
     }
@@ -173,7 +180,8 @@ export function AdoptionForm({
             Adopt {petName}
           </DialogTitle>
           <DialogDescription className="text-sm">
-            Please fill in your details so our rescue coordinators can prepare for your meet & greet.
+            Please fill in your details so our rescue coordinators can prepare for your meet &
+            greet.
           </DialogDescription>
         </DialogHeader>
 
@@ -183,17 +191,16 @@ export function AdoptionForm({
               <Check className="size-10" />
             </div>
             <div>
-              <h3 className="font-display text-3xl font-black">
-                Application Received!
-              </h3>
+              <h3 className="font-display text-3xl font-black">Application Received!</h3>
               <p className="mt-2 text-sm text-muted-foreground max-w-md mx-auto">
-                Thank you, <strong>{form.name}</strong>. Your adoption request for <strong>{petName}</strong> has been logged.
+                Thank you, <strong>{form.name}</strong>. Your adoption request for{" "}
+                <strong>{petName}</strong> has been logged in Firestore.
               </p>
             </div>
 
             <div className="rounded-2xl border bg-secondary/50 p-4 max-w-sm mx-auto text-left text-xs space-y-1.5">
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Reference ID:</span>
+                <span className="text-muted-foreground">Firestore Document ID:</span>
                 <span className="font-mono font-bold text-primary">{applicationId}</span>
               </div>
               <div className="flex justify-between">
@@ -205,13 +212,14 @@ export function AdoptionForm({
                 <span className="font-medium">{form.email}</span>
               </div>
               <div className="flex justify-between">
-                <span className="text-muted-foreground">Review Timeline:</span>
-                <span className="font-bold text-teal">24 – 48 Hours</span>
+                <span className="text-muted-foreground">Status:</span>
+                <span className="font-bold text-teal">Pending Review</span>
               </div>
             </div>
 
             <p className="text-xs text-muted-foreground max-w-sm mx-auto">
-              Our coordinator will contact you at <strong>{form.phone || form.email}</strong> to arrange the meet-and-greet.
+              Note: This application has been stored in Firestore for demonstration and academic
+              evaluation. No live coordinator review workflow is scheduled.
             </p>
 
             <Button className="mt-4 px-8 font-bold" onClick={() => close(false)}>
@@ -344,9 +352,7 @@ export function AdoptionForm({
               {step === 3 && (
                 <div className="space-y-4">
                   <div className="space-y-1.5">
-                    <Label htmlFor="app-motivation">
-                      Why would you like to adopt {petName}? *
-                    </Label>
+                    <Label htmlFor="app-motivation">Why would you like to adopt {petName}? *</Label>
                     <Textarea
                       id="app-motivation"
                       rows={3}
@@ -428,7 +434,8 @@ export function AdoptionForm({
 
                   <p className="text-xs text-muted-foreground flex items-center gap-1.5">
                     <HeartHandshake className="size-4 text-teal shrink-0" />
-                    By submitting, you confirm all details provided are true and agree to our meet-and-greet policy.
+                    By submitting, you confirm all details provided are true and agree to our
+                    meet-and-greet policy.
                   </p>
                 </div>
               )}

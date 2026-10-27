@@ -230,10 +230,7 @@ const faqs = [
 
 function HowItWorksPage() {
   const [activeStep, setActiveStep] = useState(0);
-  const [checkedReadiness, setCheckedReadiness] = useState<string[]>([
-    "time",
-    "housing",
-  ]);
+  const [checkedReadiness, setCheckedReadiness] = useState<string[]>(["time", "housing"]);
 
   const toggleReadiness = (id: string) => {
     setCheckedReadiness((prev) =>
@@ -241,9 +238,7 @@ function HowItWorksPage() {
     );
   };
 
-  const readinessScore = Math.round(
-    (checkedReadiness.length / readinessQuestions.length) * 100,
-  );
+  const readinessScore = Math.round((checkedReadiness.length / readinessQuestions.length) * 100);
 
   return (
     <main className="page-enter min-h-screen overflow-hidden">
@@ -257,13 +252,11 @@ function HowItWorksPage() {
                 Compassionate & Transparent Process
               </span>
               <h1 className="mt-6 font-display text-5xl font-black leading-[1.05] sm:text-6xl lg:text-7xl">
-                From Our Rescue to{" "}
-                <span className="text-primary">Your Loving Arms.</span>
+                From Our Rescue to <span className="text-primary">Your Loving Arms.</span>
               </h1>
               <p className="mt-6 max-w-xl text-lg leading-8 text-muted-foreground sm:text-xl">
-                Adopting a pet should be joyful, stress-free, and clear. Learn
-                how our 4-step pathway connects caring families with rescue
-                animals ready for a second chance.
+                Adopting a pet should be joyful, stress-free, and clear. Learn how our 4-step
+                pathway connects caring families with rescue animals ready for a second chance.
               </p>
               <div className="mt-8 flex flex-wrap gap-4">
                 <Button asChild size="lg">
@@ -288,28 +281,18 @@ function HowItWorksPage() {
               {/* Metric badges */}
               <div className="mt-10 grid grid-cols-3 gap-4 border-t border-border pt-8">
                 <div>
-                  <p className="font-display text-2xl font-black text-teal sm:text-3xl">
-                    4 Steps
-                  </p>
-                  <p className="text-xs font-medium text-muted-foreground">
-                    Streamlined journey
-                  </p>
+                  <p className="font-display text-2xl font-black text-teal sm:text-3xl">4 Steps</p>
+                  <p className="text-xs font-medium text-muted-foreground">Streamlined journey</p>
                 </div>
                 <div>
-                  <p className="font-display text-2xl font-black text-primary sm:text-3xl">
-                    100%
-                  </p>
-                  <p className="text-xs font-medium text-muted-foreground">
-                    Health vetted pets
-                  </p>
+                  <p className="font-display text-2xl font-black text-primary sm:text-3xl">100%</p>
+                  <p className="text-xs font-medium text-muted-foreground">Health vetted pets</p>
                 </div>
                 <div>
                   <p className="font-display text-2xl font-black text-foreground sm:text-3xl">
                     24–48h
                   </p>
-                  <p className="text-xs font-medium text-muted-foreground">
-                    Average review
-                  </p>
+                  <p className="text-xs font-medium text-muted-foreground">Average review</p>
                 </div>
               </div>
             </div>
@@ -356,9 +339,8 @@ function HowItWorksPage() {
               Your 4-Step Journey Home
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              We have refined the adoption process so you always know what comes
-              next, ensuring both your family and your pet are set up for
-              success.
+              We have refined the adoption process so you always know what comes next, ensuring both
+              your family and your pet are set up for success.
             </p>
           </div>
 
@@ -415,7 +397,7 @@ function HowItWorksPage() {
           {/* Active Step Feature Box */}
           <div className="mt-8 overflow-hidden rounded-3xl border border-border bg-card shadow-soft">
             {(() => {
-              const current = adoptionSteps[activeStep];
+              const current = adoptionSteps[activeStep] ?? adoptionSteps[0]!;
               const StepIcon = current.icon;
               return (
                 <div className="grid lg:grid-cols-12">
@@ -433,9 +415,7 @@ function HowItWorksPage() {
                     <h3 className="mt-5 font-display text-3xl font-black text-foreground sm:text-4xl">
                       {current.title}
                     </h3>
-                    <p className="mt-2 text-base font-semibold text-teal">
-                      {current.subtitle}
-                    </p>
+                    <p className="mt-2 text-base font-semibold text-teal">{current.subtitle}</p>
                     <p className="mt-4 text-base leading-7 text-muted-foreground">
                       {current.description}
                     </p>
@@ -473,17 +453,13 @@ function HowItWorksPage() {
 
                     <div className="mt-8 flex flex-wrap items-center gap-3">
                       {activeStep > 0 && (
-                        <Button
-                          variant="outline"
-                          onClick={() => setActiveStep((v) => v - 1)}
-                        >
+                        <Button variant="outline" onClick={() => setActiveStep((v) => v - 1)}>
                           Previous Step
                         </Button>
                       )}
                       {activeStep < adoptionSteps.length - 1 ? (
                         <Button onClick={() => setActiveStep((v) => v + 1)}>
-                          Next: {adoptionSteps[activeStep + 1].title}{" "}
-                          <ArrowRight />
+                          Next: {adoptionSteps[activeStep + 1]?.title ?? ""} <ArrowRight />
                         </Button>
                       ) : (
                         <Button asChild>
@@ -538,9 +514,9 @@ function HowItWorksPage() {
               What’s Included in Every Adoption
             </h2>
             <p className="mt-4 text-muted-foreground">
-              We never cut corners when it comes to animal welfare. Every rescue
-              pet receives complete medical care, behavior vetting, and starter
-              essentials before entering their new home.
+              We never cut corners when it comes to animal welfare. Every rescue pet receives
+              complete medical care, behavior vetting, and starter essentials before entering their
+              new home.
             </p>
           </div>
 
@@ -555,9 +531,7 @@ function HowItWorksPage() {
                   <div className="grid size-12 place-items-center rounded-2xl bg-teal/15 text-teal">
                     <Icon className="size-6" />
                   </div>
-                  <h3 className="mt-5 font-display text-xl font-bold">
-                    {benefit.title}
-                  </h3>
+                  <h3 className="mt-5 font-display text-xl font-bold">{benefit.title}</h3>
                   <p className="mt-2 text-sm leading-6 text-muted-foreground">
                     {benefit.description}
                   </p>
@@ -580,9 +554,9 @@ function HowItWorksPage() {
                 Are You Ready to Adopt?
               </h2>
               <p className="mt-4 text-base leading-7 text-muted-foreground">
-                Welcoming a pet is one of life’s greatest rewards. Use this quick
-                interactive checklist to see if your lifestyle, space, and
-                schedule are in sync with a new furry companion.
+                Welcoming a pet is one of life’s greatest rewards. Use this quick interactive
+                checklist to see if your lifestyle, space, and schedule are in sync with a new furry
+                companion.
               </p>
 
               {/* Progress Box */}
@@ -639,9 +613,7 @@ function HowItWorksPage() {
                       <span className="font-display text-base font-bold text-foreground">
                         {q.label}
                       </span>
-                      <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                        {q.text}
-                      </p>
+                      <p className="mt-1 text-sm leading-6 text-muted-foreground">{q.text}</p>
                     </div>
                   </label>
                 );
@@ -662,8 +634,8 @@ function HowItWorksPage() {
               Getting Your Space Ready
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Different companions have different home setup needs. Here is a
-              quick starter prep list before bringing your friend home:
+              Different companions have different home setup needs. Here is a quick starter prep
+              list before bringing your friend home:
             </p>
           </div>
 
@@ -695,12 +667,10 @@ function HowItWorksPage() {
               {/* Dog Tab */}
               <TabsContent value="dogs" className="mt-8">
                 <Card className="border-border bg-card p-8 shadow-soft">
-                  <h3 className="font-display text-2xl font-bold">
-                    Dog Home Setup Essentials
-                  </h3>
+                  <h3 className="font-display text-2xl font-bold">Dog Home Setup Essentials</h3>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    Dogs need clear boundaries, a secure outdoor area or leash
-                    routine, and dedicated resting spots.
+                    Dogs need clear boundaries, a secure outdoor area or leash routine, and
+                    dedicated resting spots.
                   </p>
                   <div className="mt-6 grid gap-4 sm:grid-cols-2">
                     {[
@@ -721,16 +691,9 @@ function HowItWorksPage() {
                         desc: "KONG toys, puzzle feeders, and safe chew ropes to channel energy.",
                       },
                     ].map((item, idx) => (
-                      <div
-                        key={idx}
-                        className="rounded-xl border bg-secondary/40 p-4"
-                      >
-                        <p className="font-display font-bold text-foreground">
-                          {item.title}
-                        </p>
-                        <p className="mt-1 text-xs leading-5 text-muted-foreground">
-                          {item.desc}
-                        </p>
+                      <div key={idx} className="rounded-xl border bg-secondary/40 p-4">
+                        <p className="font-display font-bold text-foreground">{item.title}</p>
+                        <p className="mt-1 text-xs leading-5 text-muted-foreground">{item.desc}</p>
                       </div>
                     ))}
                   </div>
@@ -740,12 +703,10 @@ function HowItWorksPage() {
               {/* Cat Tab */}
               <TabsContent value="cats" className="mt-8">
                 <Card className="border-border bg-card p-8 shadow-soft">
-                  <h3 className="font-display text-2xl font-bold">
-                    Cat Home Setup Essentials
-                  </h3>
+                  <h3 className="font-display text-2xl font-bold">Cat Home Setup Essentials</h3>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    Cats thrive on vertical territory, clean litter facilities,
-                    and calm acclimation zones.
+                    Cats thrive on vertical territory, clean litter facilities, and calm acclimation
+                    zones.
                   </p>
                   <div className="mt-6 grid gap-4 sm:grid-cols-2">
                     {[
@@ -766,16 +727,9 @@ function HowItWorksPage() {
                         desc: "Daily 15-minute play sessions to build trust and stimulate natural instincts.",
                       },
                     ].map((item, idx) => (
-                      <div
-                        key={idx}
-                        className="rounded-xl border bg-secondary/40 p-4"
-                      >
-                        <p className="font-display font-bold text-foreground">
-                          {item.title}
-                        </p>
-                        <p className="mt-1 text-xs leading-5 text-muted-foreground">
-                          {item.desc}
-                        </p>
+                      <div key={idx} className="rounded-xl border bg-secondary/40 p-4">
+                        <p className="font-display font-bold text-foreground">{item.title}</p>
+                        <p className="mt-1 text-xs leading-5 text-muted-foreground">{item.desc}</p>
                       </div>
                     ))}
                   </div>
@@ -789,8 +743,8 @@ function HowItWorksPage() {
                     Rabbits & Birds Setup Essentials
                   </h3>
                   <p className="mt-2 text-sm text-muted-foreground">
-                    Small companions require safe pen areas, proper temperature
-                    control, and species-specific dietary staples.
+                    Small companions require safe pen areas, proper temperature control, and
+                    species-specific dietary staples.
                   </p>
                   <div className="mt-6 grid gap-4 sm:grid-cols-2">
                     {[
@@ -811,16 +765,9 @@ function HowItWorksPage() {
                         desc: "Natural wood chews and variety perches to keep beaks and claws healthy.",
                       },
                     ].map((item, idx) => (
-                      <div
-                        key={idx}
-                        className="rounded-xl border bg-secondary/40 p-4"
-                      >
-                        <p className="font-display font-bold text-foreground">
-                          {item.title}
-                        </p>
-                        <p className="mt-1 text-xs leading-5 text-muted-foreground">
-                          {item.desc}
-                        </p>
+                      <div key={idx} className="rounded-xl border bg-secondary/40 p-4">
+                        <p className="font-display font-bold text-foreground">{item.title}</p>
+                        <p className="mt-1 text-xs leading-5 text-muted-foreground">{item.desc}</p>
                       </div>
                     ))}
                   </div>
@@ -842,8 +789,8 @@ function HowItWorksPage() {
               Frequently Asked Questions
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Everything you need to know about adoption procedures, fees, and
-              our compassionate matching policies.
+              Everything you need to know about adoption procedures, fees, and our compassionate
+              matching policies.
             </p>
           </div>
 
@@ -879,8 +826,8 @@ function HowItWorksPage() {
             Start Your Adoption Journey Today
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-ink-muted">
-            Explore 16+ lovely fictional rescue profiles, save your favorites,
-            and discover the unconditional love only a companion animal can bring.
+            Explore 16+ lovely fictional rescue profiles, save your favorites, and discover the
+            unconditional love only a companion animal can bring.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Button asChild size="lg">

@@ -5,7 +5,7 @@
 ![PawConnect Banner](https://images.unsplash.com/photo-1450778869180-41d0601e046e?auto=format&fit=crop&w=1200&q=80)
 
 **Connecting rescue companion animals with loving forever families.**  
-*Every pet deserves a safe home, proper healthcare, and lifelong dignity.*
+_Every pet deserves a safe home, proper healthcare, and lifelong dignity._
 
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-blue?logo=typescript)](https://www.typescriptlang.org/)
 [![React](https://img.shields.io/badge/React-19-61DAFB?logo=react)](https://react.dev/)
@@ -27,7 +27,7 @@
 ## ✨ Key Features
 
 - **🔍 Browse & Discover Companions**:
-  - Filter by species (*Dogs, Cats, Rabbits, Birds*), age (*Baby, Young, Adult, Senior*), gender, size, and location.
+  - Filter by species (_Dogs, Cats, Rabbits, Birds_), age (_Baby, Young, Adult, Senior_), gender, size, and location.
   - Search by pet name or breed with instant query updates.
   - Rich pet profiles with high-resolution photography, traits, medical passports, and household compatibility scores.
 
@@ -62,14 +62,14 @@
 
 ## 🛠️ Tech Stack
 
-| Layer | Technologies |
-| :--- | :--- |
+| Layer                 | Technologies                                                                                                          |
+| :-------------------- | :-------------------------------------------------------------------------------------------------------------------- |
 | **Framework & Build** | [React 19](https://react.dev/), [Vite 6](https://vitejs.dev/), [TanStack Start / Router](https://tanstack.com/router) |
-| **Language** | [TypeScript](https://www.typescriptlang.org/) |
-| **Styling & UI** | [Tailwind CSS v4](https://tailwindcss.com/), [shadcn/ui](https://ui.shadcn.com/), [Lucide Icons](https://lucide.dev/) |
-| **State & Data** | [TanStack Query](https://tanstack.com/query), React Context API |
-| **Backend / BaaS** | [Firebase](https://firebase.google.com/) (Authentication, Cloud Firestore, Storage, Analytics) |
-| **Notifications** | [Sonner](https://sonner.emilkowal.ski/) |
+| **Language**          | [TypeScript](https://www.typescriptlang.org/)                                                                         |
+| **Styling & UI**      | [Tailwind CSS v4](https://tailwindcss.com/), [shadcn/ui](https://ui.shadcn.com/), [Lucide Icons](https://lucide.dev/) |
+| **State & Data**      | [TanStack Query](https://tanstack.com/query), React Context API                                                       |
+| **Backend / BaaS**    | [Firebase](https://firebase.google.com/) (Authentication, Cloud Firestore, Storage, Analytics)                        |
+| **Notifications**     | [Sonner](https://sonner.emilkowal.ski/)                                                                               |
 
 ---
 
@@ -168,7 +168,8 @@ To enable all features (Authentication & Firestore):
 2. **Authentication**:
    - Enable **Google** and **Email/Password** under **Build > Authentication > Sign-in method**.
 3. **Cloud Firestore**:
-   - Create a Firestore Database in test mode or with the following recommended rules:
+   - Create a Firestore Database.
+   - The security rules are provided in `firestore.rules`. These rules must be published in the [Firebase Console](https://console.firebase.google.com/) under **Build > Firestore Database > Rules**:
    ```javascript
    rules_version = '2';
    service cloud.firestore {
@@ -177,8 +178,8 @@ To enable all features (Authentication & Firestore):
          allow read, write: if request.auth != null && request.auth.uid == userId;
        }
        match /applications/{appId} {
-         allow create: if request.auth != null;
-         allow read: if request.auth != null && (resource.data.userId == request.auth.uid);
+         allow create: if request.auth != null && request.resource.data.userId == request.auth.uid;
+         allow read, update, delete: if false;
        }
      }
    }

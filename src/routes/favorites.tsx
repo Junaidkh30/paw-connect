@@ -38,9 +38,7 @@ function Favorites() {
           <p className="text-sm font-extrabold uppercase text-teal">
             {user ? "Saved to your account" : "Favorites List"}
           </p>
-          <h1 className="mt-2 font-display text-4xl sm:text-5xl font-black">
-            Your Favorites
-          </h1>
+          <h1 className="mt-2 font-display text-4xl sm:text-5xl font-black">Your Favorites</h1>
           <p className="mt-2 text-muted-foreground">
             A shortlist of rescue companion animals who caught your heart.
           </p>
@@ -50,9 +48,7 @@ function Favorites() {
           <Button
             variant="outline"
             onClick={() =>
-              openAuthModal(
-                "Sign in to sync and save your favorite pets across devices.",
-              )
+              openAuthModal("Sign in to sync and save your favorite pets across devices.")
             }
             className="gap-2 font-bold"
           >
@@ -83,11 +79,7 @@ function Favorites() {
             {!user && (
               <Button
                 variant="outline"
-                onClick={() =>
-                  openAuthModal(
-                    "Sign in to save and manage your favorite pets.",
-                  )
-                }
+                onClick={() => openAuthModal("Sign in to save and manage your favorite pets.")}
               >
                 Sign In
               </Button>

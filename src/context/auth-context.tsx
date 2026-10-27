@@ -1,10 +1,4 @@
-import {
-  createContext,
-  useContext,
-  useEffect,
-  useState,
-  type ReactNode,
-} from "react";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import {
   GoogleAuthProvider,
   signInWithPopup,
@@ -23,11 +17,7 @@ type AuthContextType = {
   loading: boolean;
   signInWithGoogle: () => Promise<void>;
   signInWithEmail: (email: string, password: string) => Promise<void>;
-  signUpWithEmail: (
-    email: string,
-    password: string,
-    displayName: string,
-  ) => Promise<void>;
+  signUpWithEmail: (email: string, password: string, displayName: string) => Promise<void>;
   signOutUser: () => Promise<void>;
   authModalOpen: boolean;
   authModalReason: string;
@@ -73,9 +63,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [authModalReason, setAuthModalReason] = useState<string>(
     "Sign in or create an account to continue.",
   );
-  const [onAuthCallback, setOnAuthCallback] = useState<(() => void) | null>(
-    null,
-  );
+  const [onAuthCallback, setOnAuthCallback] = useState<(() => void) | null>(null);
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
@@ -132,11 +120,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   };
 
-  const signUpWithEmail = async (
-    email: string,
-    password: string,
-    displayName: string,
-  ) => {
+  const signUpWithEmail = async (email: string, password: string, displayName: string) => {
     try {
       const result = await createUserWithEmailAndPassword(auth, email, password);
       if (displayName.trim()) {
@@ -153,6 +137,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const signOutUser = async () => {
     try {
       await signOut(auth);
+      localStorage.removeItem("pawconnect-favorites");
       toast.info("You have signed out successfully.");
     } catch (error) {
       toast.error("Failed to sign out. Please try again.");

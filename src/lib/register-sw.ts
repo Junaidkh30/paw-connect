@@ -9,13 +9,8 @@ export function registerServiceWorker() {
             const installingWorker = reg.installing;
             if (installingWorker) {
               installingWorker.addEventListener("statechange", () => {
-                if (
-                  installingWorker.state === "installed" &&
-                  navigator.serviceWorker.controller
-                ) {
-                  console.log(
-                    "PawConnect cache updated. New content ready on next reload.",
-                  );
+                if (installingWorker.state === "installed" && navigator.serviceWorker.controller) {
+                  console.log("PawConnect cache updated. New content ready on next reload.");
                 }
               });
             }

@@ -196,9 +196,7 @@ function DonatePage() {
   const [dedication, setDedication] = useState<string>("");
   const [showSuccessDialog, setShowSuccessDialog] = useState<boolean>(false);
 
-  const activeAmount = isCustom
-    ? parseFloat(customAmount) || 0
-    : selectedAmount;
+  const activeAmount = isCustom ? parseFloat(customAmount) || 0 : selectedAmount;
 
   const currentImpact = useMemo(() => {
     if (activeAmount >= 300) {
@@ -249,40 +247,29 @@ function DonatePage() {
                 Support Rescue & Healing
               </span>
               <h1 className="mt-6 font-display text-5xl font-black leading-[1.05] sm:text-6xl">
-                Every Contribution{" "}
-                <span className="text-primary">Saves a Life.</span>
+                Every Contribution <span className="text-primary">Saves a Life.</span>
               </h1>
               <p className="mt-6 max-w-xl text-lg leading-8 text-muted-foreground">
-                Your generosity provides emergency veterinary surgeries,
-                enriching nutrition, safe foster havens, and the medical care
-                rescue animals need before finding their forever families.
+                Your generosity provides emergency veterinary surgeries, enriching nutrition, safe
+                foster havens, and the medical care rescue animals need before finding their forever
+                families.
               </p>
 
               {/* Highlight Metrics */}
               <div className="mt-10 grid grid-cols-2 gap-4 border-t border-border pt-8 sm:grid-cols-3">
                 <div>
-                  <p className="font-display text-2xl font-black text-teal sm:text-3xl">
-                    850+
-                  </p>
-                  <p className="text-xs font-medium text-muted-foreground">
-                    Surgeries Funded
-                  </p>
+                  <p className="font-display text-2xl font-black text-teal sm:text-3xl">850+</p>
+                  <p className="text-xs font-medium text-muted-foreground">Surgeries Funded</p>
                 </div>
                 <div>
-                  <p className="font-display text-2xl font-black text-primary sm:text-3xl">
-                    120k+
-                  </p>
-                  <p className="text-xs font-medium text-muted-foreground">
-                    Meals Served
-                  </p>
+                  <p className="font-display text-2xl font-black text-primary sm:text-3xl">120k+</p>
+                  <p className="text-xs font-medium text-muted-foreground">Meals Served</p>
                 </div>
                 <div>
                   <p className="font-display text-2xl font-black text-foreground sm:text-3xl">
                     100%
                   </p>
-                  <p className="text-xs font-medium text-muted-foreground">
-                    Nonprofit Mission
-                  </p>
+                  <p className="text-xs font-medium text-muted-foreground">Nonprofit Mission</p>
                 </div>
               </div>
             </div>
@@ -292,9 +279,7 @@ function DonatePage() {
               <div className="rounded-3xl border border-border bg-card p-6 shadow-lift sm:p-8">
                 <div className="mb-6 flex items-center justify-between">
                   <div>
-                    <h2 className="font-display text-2xl font-bold">
-                      Make a Donation
-                    </h2>
+                    <h2 className="font-display text-2xl font-bold">Make a Donation</h2>
                     <p className="text-xs text-muted-foreground">
                       Frontend demonstration · No real charges
                     </p>
@@ -338,8 +323,7 @@ function DonatePage() {
                     </Label>
                     <div className="mt-2 grid grid-cols-3 gap-2.5 sm:grid-cols-5">
                       {presetAmounts.map((p) => {
-                        const isSelected =
-                          !isCustom && selectedAmount === p.amount;
+                        const isSelected = !isCustom && selectedAmount === p.amount;
                         return (
                           <button
                             key={p.amount}
@@ -400,9 +384,7 @@ function DonatePage() {
                           Your Impact ({frequency === "monthly" ? "Monthly" : "One-Time"} $
                           {activeAmount || 0})
                         </p>
-                        <p className="mt-1 text-sm text-foreground">
-                          {currentImpact}
-                        </p>
+                        <p className="mt-1 text-sm text-foreground">{currentImpact}</p>
                       </div>
                     </div>
                   </div>
@@ -436,9 +418,7 @@ function DonatePage() {
 
                   {/* Dedication Note */}
                   <div>
-                    <Label htmlFor="dedication">
-                      Dedicate this gift (Optional)
-                    </Label>
+                    <Label htmlFor="dedication">Dedicate this gift (Optional)</Label>
                     <Input
                       id="dedication"
                       className="mt-1.5"
@@ -482,8 +462,7 @@ function DonatePage() {
 
                   {/* Submit Button */}
                   <Button type="submit" size="lg" className="w-full text-base">
-                    <Heart className="size-4 fill-current" /> Donate $
-                    {activeAmount || 0}{" "}
+                    <Heart className="size-4 fill-current" /> Donate ${activeAmount || 0}{" "}
                     {frequency === "monthly" ? "Monthly" : "Now"}
                   </Button>
 
@@ -508,9 +487,8 @@ function DonatePage() {
               Where Every Dollar Goes
             </h2>
             <p className="mt-4 text-muted-foreground">
-              We operate with rigorous transparency. Here is how every
-              contribution directly transforms into life-saving care, warm
-              shelter, and forever homes.
+              We operate with rigorous transparency. Here is how every contribution directly
+              transforms into life-saving care, warm shelter, and forever homes.
             </p>
           </div>
 
@@ -518,10 +496,7 @@ function DonatePage() {
             {transparencyPillars.map((pillar, idx) => {
               const Icon = pillar.icon;
               return (
-                <Card
-                  key={idx}
-                  className="rounded-2xl border-border bg-card p-6 shadow-soft"
-                >
+                <Card key={idx} className="rounded-2xl border-border bg-card p-6 shadow-soft">
                   <div className="flex items-center justify-between">
                     <div className="grid size-12 place-items-center rounded-2xl bg-secondary text-foreground">
                       <Icon className="size-6 text-teal" />
@@ -533,9 +508,7 @@ function DonatePage() {
                   <h3 className="mt-5 font-display text-lg font-bold leading-snug">
                     {pillar.title}
                   </h3>
-                  <p className="mt-2 text-xs leading-5 text-muted-foreground">
-                    {pillar.desc}
-                  </p>
+                  <p className="mt-2 text-xs leading-5 text-muted-foreground">{pillar.desc}</p>
                   <Progress value={pillar.percentage} className="mt-4 h-2" />
                 </Card>
               );
@@ -555,8 +528,8 @@ function DonatePage() {
               Other Ways to Make a Difference
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Financial giving is just one way to help. Explore in-kind
-              donations, pet sponsorships, and corporate matching programs.
+              Financial giving is just one way to help. Explore in-kind donations, pet sponsorships,
+              and corporate matching programs.
             </p>
           </div>
 
@@ -591,16 +564,14 @@ function DonatePage() {
                     <div className="grid size-12 place-items-center rounded-2xl bg-primary/15 text-primary">
                       <Icon className="size-6" />
                     </div>
-                    <h3 className="mt-5 font-display text-xl font-bold">
-                      {item.title}
-                    </h3>
-                    <p className="mt-2 text-sm leading-6 text-muted-foreground">
-                      {item.desc}
-                    </p>
+                    <h3 className="mt-5 font-display text-xl font-bold">{item.title}</h3>
+                    <p className="mt-2 text-sm leading-6 text-muted-foreground">{item.desc}</p>
                   </div>
                   <div className="mt-6 border-t pt-4">
                     <Button asChild variant="outline" className="w-full">
-                      <Link to="/pets">{item.action} <ArrowRight /></Link>
+                      <Link to="/pets">
+                        {item.action} <ArrowRight />
+                      </Link>
                     </Button>
                   </div>
                 </Card>
@@ -623,26 +594,18 @@ function DonatePage() {
               </h2>
             </div>
             <p className="text-sm text-muted-foreground">
-              Thank you to our compassionate community for making every rescue
-              possible.
+              Thank you to our compassionate community for making every rescue possible.
             </p>
           </div>
 
           <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
             {sampleDonors.map((donor, idx) => (
-              <div
-                key={idx}
-                className="rounded-2xl border border-border bg-card p-5 shadow-soft"
-              >
+              <div key={idx} className="rounded-2xl border border-border bg-card p-5 shadow-soft">
                 <div className="flex items-center justify-between">
-                  <span className="font-display font-bold text-foreground">
-                    {donor.name}
-                  </span>
+                  <span className="font-display font-bold text-foreground">{donor.name}</span>
                   <Badge variant="secondary">{donor.amount}</Badge>
                 </div>
-                <p className="mt-2 text-xs italic text-muted-foreground">
-                  “{donor.note}”
-                </p>
+                <p className="mt-2 text-xs italic text-muted-foreground">“{donor.note}”</p>
                 <div className="mt-4 flex items-center justify-between text-[11px] text-muted-foreground">
                   <span className="font-semibold text-teal">{donor.type}</span>
                   <span>{donor.time}</span>
@@ -660,12 +623,10 @@ function DonatePage() {
             <span className="text-xs font-extrabold uppercase tracking-wider text-teal">
               Common Inquiries
             </span>
-            <h2 className="mt-3 font-display text-4xl font-black sm:text-5xl">
-              Donation FAQs
-            </h2>
+            <h2 className="mt-3 font-display text-4xl font-black sm:text-5xl">Donation FAQs</h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Learn more about how funds are managed, security standards, and
-              tax-deduction policies.
+              Learn more about how funds are managed, security standards, and tax-deduction
+              policies.
             </p>
           </div>
 
@@ -701,8 +662,8 @@ function DonatePage() {
             Want to Open Your Home Instead?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-ink-muted">
-            Explore our adoptable pets waiting for a loving family, or learn more
-            about how our adoption process works.
+            Explore our adoptable pets waiting for a loving family, or learn more about how our
+            adoption process works.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Button asChild size="lg">
@@ -730,18 +691,16 @@ function DonatePage() {
             <DialogDescription className="text-sm">
               Your demo donation of{" "}
               <strong className="text-foreground">
-                ${activeAmount}{" "}
-                {frequency === "monthly" ? "monthly" : "one-time"}
+                ${activeAmount} {frequency === "monthly" ? "monthly" : "one-time"}
               </strong>{" "}
-              helps ensure vulnerable rescue animals receive immediate medical
-              vetting and nourishing meals.
+              helps ensure vulnerable rescue animals receive immediate medical vetting and
+              nourishing meals.
             </DialogDescription>
           </DialogHeader>
           <div className="my-3 rounded-2xl bg-secondary p-4 text-xs text-muted-foreground">
             <p className="font-bold text-foreground">DEMO ACKNOWLEDGEMENT</p>
             <p className="mt-1">
-              This is a demonstration interface. No real financial transaction was
-              processed.
+              This is a demonstration interface. No real financial transaction was processed.
             </p>
           </div>
           <div className="flex justify-center gap-3">
