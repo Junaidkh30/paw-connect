@@ -592,7 +592,7 @@ function AboutPage() {
                   onSubmit={(e) => {
                     e.preventDefault();
                     toast.success(
-                      "Message sent! Our adoption coordinators will review your inquiry.",
+                      "Message sent! This is a demonstration project, so no team member will follow up.",
                     );
                     (e.target as HTMLFormElement).reset();
                   }}

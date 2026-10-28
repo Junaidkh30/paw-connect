@@ -451,7 +451,7 @@ function PetDetailPage() {
                 </div>
 
                 <p className="mt-4 text-center text-xs text-muted-foreground">
-                  Zero application fee · 24–48 hour coordinator review
+                  Zero application fee · Demonstration project
                 </p>
               </div>
 

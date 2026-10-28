@@ -78,17 +78,17 @@ const adoptionSteps = [
     step: "02",
     title: "Submit a Quick Application",
     subtitle: "Share details about your household and daily routine",
-    timeframe: "5 mins to apply · 24–48 hr review",
+    timeframe: "5 mins to apply · Demonstration only",
     icon: HeartHandshake,
     color: "bg-teal/15 text-teal",
     image: pet2Luna,
     description:
-      "Fill out our straightforward adoption inquiry. This helps our coordinators verify that the pet's unique needs align with your living environment.",
+      "Fill out our straightforward adoption inquiry. This demonstration form saves your preferences to Firestore without requiring real-world screening.",
     details: [
       "100% online form with no lengthy paperwork or upfront fees",
       "Share details on housing type (apartment vs yard), work hours, and past experience",
       "Helps matchmakers identify any special support or acclimation needed",
-      "Quick response from shelter volunteers within 1 to 2 business days",
+      "Inquiry stored directly in Firestore with Pending Review status",
     ],
     tip: "Honesty is key! There is no 'perfect' home—we simply strive for the right mutual match for long-term happiness.",
   },
@@ -165,7 +165,7 @@ const includedBenefits = [
     icon: Heart,
     title: "30-Day Transition Support",
     description:
-      "Direct guidance from our volunteer coordinators and trainers to help your pet settle comfortably into their new routine.",
+      "Helpful transition guides and pet-care resources to help your pet settle comfortably into their new routine.",
   },
 ];
 
@@ -212,7 +212,7 @@ const faqs = [
   },
   {
     q: "How long does the entire adoption process take?",
-    a: "Typically between 2 to 5 business days from your first application to adoption day. This gives enough time for application review, a relaxing meet-and-greet, and home preparation without unnecessary delays.",
+    a: "PawConnect is a demonstration project, so applications are recorded in Firestore without an active coordinator review workflow or real-world waiting period.",
   },
   {
     q: "What is the 3-3-3 rule for adopted pets?",
@@ -224,7 +224,7 @@ const faqs = [
   },
   {
     q: "Can first-time pet owners adopt through PawConnect?",
-    a: "Definitely! We have many beginner-friendly, mellow companions who are gentle, patient, and easy to care for. Our adoption coordinators will gladly recommend pets ideal for first-time adopters.",
+    a: "Definitely! We have many beginner-friendly, mellow companions who are gentle, patient, and easy to care for. You can browse pet profiles and filters to find pets ideal for first-time adopters.",
   },
 ];
 
@@ -290,9 +290,9 @@ function HowItWorksPage() {
                 </div>
                 <div>
                   <p className="font-display text-2xl font-black text-foreground sm:text-3xl">
-                    24–48h
+                    Demo
                   </p>
-                  <p className="text-xs font-medium text-muted-foreground">Average review</p>
+                  <p className="text-xs font-medium text-muted-foreground">Demonstration only</p>
                 </div>
               </div>
             </div>

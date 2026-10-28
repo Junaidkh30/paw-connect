@@ -73,29 +73,29 @@ export const Route = createFileRoute("/donate")({
 
 const presetAmounts = [
   {
-    amount: 15,
-    label: "$15",
+    amount: 500,
+    label: "₹500",
     impact: "Feeds 2 rescue puppies or kittens nourishing meals for a full week.",
   },
   {
-    amount: 35,
-    label: "$35",
+    amount: 1000,
+    label: "₹1,000",
     impact: "Covers complete core vaccination series (Rabies, DHPP/FVRCP) & deworming.",
   },
   {
-    amount: 75,
-    label: "$75",
+    amount: 2500,
+    label: "₹2,500",
     popular: true,
     impact: "Funds a safe spay/neuter surgery and post-operative pain medication.",
   },
   {
-    amount: 150,
-    label: "$150",
+    amount: 5000,
+    label: "₹5,000",
     impact: "Provides emergency intake diagnostics, blood panels, and orthopedic x-rays.",
   },
   {
-    amount: 300,
-    label: "$300",
+    amount: 10000,
+    label: "₹10,000",
     impact: "Sponsors life-saving surgery or ICU hospital recovery for an injured rescue.",
   },
 ];
@@ -134,28 +134,28 @@ const transparencyPillars = [
 const sampleDonors = [
   {
     name: "Aarav Sharma",
-    amount: "$75",
+    amount: "₹2,500",
     type: "One-Time",
     time: "10 mins ago",
     note: "In loving memory of Bruno 🐾",
   },
   {
     name: "Priya Menon",
-    amount: "$35/mo",
+    amount: "₹1,000/mo",
     type: "Monthly Guardian",
     time: "35 mins ago",
     note: "For the street pups waiting for homes.",
   },
   {
     name: "Vikram & Ananya",
-    amount: "$150",
+    amount: "₹5,000",
     type: "One-Time",
     time: "2 hours ago",
     note: "Thank you for the wonderful rescue work!",
   },
   {
     name: "Rhea Sen",
-    amount: "$15/mo",
+    amount: "₹500/mo",
     type: "Monthly Guardian",
     time: "4 hours ago",
     note: "Proud rabbit adopter & monthly supporter.",
@@ -187,7 +187,7 @@ const donateFaqs = [
 
 function DonatePage() {
   const [frequency, setFrequency] = useState<"one-time" | "monthly">("monthly");
-  const [selectedAmount, setSelectedAmount] = useState<number>(75);
+  const [selectedAmount, setSelectedAmount] = useState<number>(2500);
   const [customAmount, setCustomAmount] = useState<string>("");
   const [isCustom, setIsCustom] = useState<boolean>(false);
   const [paymentMethod, setPaymentMethod] = useState<string>("card");
@@ -199,19 +199,19 @@ function DonatePage() {
   const activeAmount = isCustom ? parseFloat(customAmount) || 0 : selectedAmount;
 
   const currentImpact = useMemo(() => {
-    if (activeAmount >= 300) {
+    if (activeAmount >= 10000) {
       return "Sponsors a critical life-saving orthopedic surgery or multi-week ICU hospital recovery.";
     }
-    if (activeAmount >= 150) {
+    if (activeAmount >= 5000) {
       return "Provides emergency intake diagnostics, blood panels, and trauma x-rays.";
     }
-    if (activeAmount >= 75) {
+    if (activeAmount >= 2500) {
       return "Funds a safe spay/neuter surgery, anesthesia, and post-op recovery care.";
     }
-    if (activeAmount >= 35) {
+    if (activeAmount >= 1000) {
       return "Covers complete core vaccination series (Rabies, DHPP/FVRCP) & deworming.";
     }
-    if (activeAmount >= 15) {
+    if (activeAmount >= 500) {
       return "Feeds 2 rescue puppies or kittens nourishing meals for a full week.";
     }
     return "Contributes essential daily food and clean bedding for shelter pets.";
@@ -230,7 +230,7 @@ function DonatePage() {
 
     setShowSuccessDialog(true);
     toast.success(
-      `Thank you, ${donorName}! Your generous demo donation of $${activeAmount} was recorded.`,
+      `Thank you, ${donorName}! Your generous demo donation of ₹${activeAmount.toLocaleString("en-IN")} was recorded.`,
     );
   };
 
@@ -358,11 +358,11 @@ function DonatePage() {
                     <div className="mt-3">
                       <div className="relative">
                         <span className="absolute left-3.5 top-3 text-sm font-bold text-muted-foreground">
-                          $
+                          ₹
                         </span>
                         <Input
                           type="number"
-                          placeholder="Or enter custom amount in USD"
+                          placeholder="Or enter custom amount in INR"
                           className="pl-8"
                           value={customAmount}
                           onFocus={() => setIsCustom(true)}
@@ -381,8 +381,8 @@ function DonatePage() {
                       <HandHeart className="mt-0.5 size-5 shrink-0 text-teal" />
                       <div>
                         <p className="text-xs font-extrabold uppercase text-teal">
-                          Your Impact ({frequency === "monthly" ? "Monthly" : "One-Time"} $
-                          {activeAmount || 0})
+                          Your Impact ({frequency === "monthly" ? "Monthly" : "One-Time"} ₹
+                          {activeAmount ? activeAmount.toLocaleString("en-IN") : 0})
                         </p>
                         <p className="mt-1 text-sm text-foreground">{currentImpact}</p>
                       </div>
@@ -462,7 +462,8 @@ function DonatePage() {
 
                   {/* Submit Button */}
                   <Button type="submit" size="lg" className="w-full text-base">
-                    <Heart className="size-4 fill-current" /> Donate ${activeAmount || 0}{" "}
+                    <Heart className="size-4 fill-current" /> Donate ₹
+                    {activeAmount ? activeAmount.toLocaleString("en-IN") : 0}{" "}
                     {frequency === "monthly" ? "Monthly" : "Now"}
                   </Button>
 
@@ -484,7 +485,7 @@ function DonatePage() {
               Accountability & Trust
             </span>
             <h2 className="mt-3 font-display text-4xl font-black sm:text-5xl">
-              Where Every Dollar Goes
+              Where Every Rupee Goes
             </h2>
             <p className="mt-4 text-muted-foreground">
               We operate with rigorous transparency. Here is how every contribution directly
@@ -550,7 +551,7 @@ function DonatePage() {
               {
                 icon: PiggyBank,
                 title: "Corporate Giving & Match",
-                desc: "Many employers match charitable donations dollar-for-dollar. Check with your HR team to double your donation’s reach.",
+                desc: "Many employers match charitable donations rupee-for-rupee. Check with your HR team to double your donation’s reach.",
                 action: "Learn About Matching",
               },
             ].map((item, idx) => {
@@ -691,7 +692,8 @@ function DonatePage() {
             <DialogDescription className="text-sm">
               Your demo donation of{" "}
               <strong className="text-foreground">
-                ${activeAmount} {frequency === "monthly" ? "monthly" : "one-time"}
+                ₹{activeAmount ? activeAmount.toLocaleString("en-IN") : 0}{" "}
+                {frequency === "monthly" ? "monthly" : "one-time"}
               </strong>{" "}
               helps ensure vulnerable rescue animals receive immediate medical vetting and
               nourishing meals.

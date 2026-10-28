@@ -180,8 +180,8 @@ export function AdoptionForm({
             Adopt {petName}
           </DialogTitle>
           <DialogDescription className="text-sm">
-            Please fill in your details so our rescue coordinators can prepare for your meet &
-            greet.
+            Tell us about yourself. This is a demonstration project, so your details are saved but
+            no shelter will contact you.
           </DialogDescription>
         </DialogHeader>
 
